@@ -1,0 +1,70 @@
+version: "3.3"
+services:
+  modbus4mqtt:
+    image: tjhowse/modbus4mqtt
+    container_name: modbus4mqtt
+    network_mode: host
+    command: >
+      --hostname "$MQTT_SERVER_ADDRESS"
+      --port "$MQTT_SERVER_PORT"
+      --username "$MQTT_SERVER_USER"
+      --password "$MQTT_SERVER_PASSWORD"
+      --config /modbus4mqtt/config.yml
+    restart: unless-stopped
+    volumes:
+      - ./config/modbus4mqtt/bartl_full.yml:/modbus4mqtt/config.yml
+      #- ./config/modbus4mqtt/Bartl-WP.yml:/modbus4mqtt/config.yml
+    # links:
+    #   - mosquitto
+    depends_on:
+      - mosquitto
+
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto-test
+    hostname: mosquitto-test
+    restart: always
+    volumes:
+      - ./config/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./data/mosquitto:/mosquitto/data
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+
+
+  influxdb:
+    container_name: influxdb-test
+    # environment:
+    #   - INFLUXDB_DB=$INFLUXDB_DB
+    #   - INFLUXDB_ADMIN_USER=$INFLUXDB_ADMIN_USER
+    #   - INFLUXDB_ADMIN_PASSWORD=$INFLUXDB_ADMIN_PASSWORD
+    image: influxdb:latest
+    ports:
+      - "8086:8086"
+    env_file:
+      - .env
+    restart: unless-stopped
+    volumes:
+      - ./data/influxdb:/var/lib/influxdb
+      - /etc/localtime:/etc/localtime:ro
+
+  telegraf:
+    image: telegraf
+    hostname: telegraf-mqtt-test
+    container_name: telegraf-mqtt-test
+    links:
+      - influxdb
+    volumes:
+       # Mount for telegraf configuration
+      - ./config/telegraf/:/etc/telegraf/
+      # Mount for Docker API access
+      - /var/run/docker.sock:/var/run/docker.sock
+    env_file:
+      - .env
+    environment:
+      - DOCKER_INFLUXDB_INIT_ORG=$DOCKER_INFLUXDB_INIT_ORG
+      - DOCKER_INFLUXDB_INIT_BUCKET=$DOCKER_INFLUXDB_INIT_BUCKET
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN
+    depends_on:
+      - influxdb
+      - mosquitto
