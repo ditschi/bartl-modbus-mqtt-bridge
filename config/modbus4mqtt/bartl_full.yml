@@ -1,57 +1,16 @@
 ip: 192.168.1.211
 port: 502
-update_rate: 15
+update_rate: 5
 address_offset: 0
-variant: bartl_wp
 scan_batching: 1
 registers:
-  - pub_topic:  bartl_wp/heizkreis/raumtemperatur/AKTUELL
-    address: 1
-    # description : AKTUELLE_RAUMTEMPERATUR
-    scale: 0.1
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/raumtemperatur/AKTUELLER_SOLLWERT_INKLUSIVE_OFFSET
-    address: 2
-    # description : AKTUELLER_RAUMSOLLWERT_INKLUSIVE_RAUMSOLLWERT_OFFSET
-    scale: 0.1
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/raumtemperatur/AKTUELL_GUELTIGE
-    address: 3
-    # description : AKTUELL_GUELTIGE_RAUMTEMPERATUR
-    scale: 0.1
-    # type: R
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/raumtemperatur/heizbetrieb/NORMAL
-    set_topic:  bartl_wp/heizkreis/raumtemperatur/heizbetrieb/NORMAL/set
-    address: 4
-    # description : NORMAL_RAUMTEMPERATUR_HEIZBETRIEB
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/raumtemperatur/heizbetrieb/NACHTABSENKUNG
-    set_topic:  bartl_wp/heizkreis/raumtemperatur/heizbetrieb/NACHTABSENKUNG/set
-    address: 5
-    # description : NACHTABSENK_RAUMTEMPERATUR_HEIZBETRIEB
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/raumtemperatur/OFFSET
-    set_topic:  bartl_wp/heizkreis/raumtemperatur/OFFSET/set
-    address: 6
-    # description : OFFSET_DER_AKTUELL_GUELTIGEN_RAUMTEMPERATUR
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/BETRIEBSART
-    set_topic:  bartl_wp/heizkreis/BETRIEBSART/set
+  ###
+  ###  Repeated status with value mapping
+  ###
+  - pub_topic: status/heizkreis/BETRIEBSART
+    set_topic: status/heizkreis/BETRIEBSART/set
     address: 7
-    # description : BETRIEBSART_HEIZKREIS
+    # description: BETRIEBSART_HEIZKREIS
     # type: R/W
     value_map:
       Standby: 0
@@ -61,831 +20,8 @@ registers:
       Urlaub: 4
       Party: 5
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/raumtemperatur/kuehlbetrieb/NORMAL
-    set_topic:  bartl_wp/heizkreis/raumtemperatur/kuehlbetrieb/NORMAL/set
-    address: 8
-    # description : NORMAL_RAUMTEMPERATUR_KUEHLBETRIEB
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/raumtemperatur/kuehlbetrieb/NACHTABSENKUNG
-    set_topic:  bartl_wp/heizkreis/raumtemperatur/kuehlbetrieb/NACHTABSENKUNG/set
-    address: 9
-    # description : NACHTABSENK_RAUMTEMPERATUR_KUEHLBETRIEB
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/AKTUELLE_RAUMFEUCHTE_PROZENT
-    address: 10
-    # desc_PROZENTription : AKTUELLE_RAUMFEUCHTE
-    # type: R
-    # unit: '%'
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/betriebsmodus/KUEHLEN_BEI_EXTERNER_ANSTEUERUNG
-    set_topic:  bartl_wp/heizkreis/betriebsmodus/KUEHLEN_BEI_EXTERNER_ANSTEUERUNG/set
-    address: 11
-    # description : BETRIEBSMODUS_KUEHLEN_BEI_EXTERNER_ANSTEUERUNG
-    # type: R/W
-    # unit: null
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/betriebsmodus/HEIZEN_BEI_EXTERNER_ANSTEUERUNG
-    set_topic:  bartl_wp/heizkreis/betriebsmodus/HEIZEN_BEI_EXTERNER_ANSTEUERUNG/set
-    address: 12
-    # description : BETRIEBSMODUS_HEIZEN_BEI_EXTERNER_ANSTEUERUNG
-    # type: R/W
-    # unit: null
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/temperatur/vorlauf/SOLLWERT_BEI_EXTERNER_ANSTEUERUNG
-    set_topic:  bartl_wp/heizkreis/temperatur/vorlauf/SOLLWERT_BEI_EXTERNER_ANSTEUERUNG/set
-    address: 13
-    # description : VORLAUFSOLLWERT_BEI_EXTERNER_ANSTEUERUNG
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/temperatur/vorlauf/ISTWERT
-    address: 14
-    # description : HEIZKREIS_VORLAUF_ISTWERT
-    scale: 0.1
-    # type: R
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/PUMPE
-    set_topic:  bartl_wp/heizkreis/PUMPE/set
-    address: 15
-    # description : HEIZKREISPUMPE
-    # type: R
-    # unit: null
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/temperatur/ruecklauf/ISTWERT
-    address: 16
-    # description : HEIZKREIS_RUECKLAUF_ISTWERT
-    scale: 0.1
-    # type: R
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/AKTUELLE_ANFORDERUNG1
-    address: 17
-    # description : AKTUELLE_ANFORDERUNG
-    # type: R
-    value_map:
-      AUS: 0
-      AKTIV: 1
-      Temp-/Prio AUS: 3
-      AT_AUS: 5
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/AKTUELLE_ANFORDERUNG2
-    address: 18
-    # description : AKTUELLE_ANFORDERUNG
-    # type: R
-    value_map:
-      AUS: 0
-      AKTIV: 1
-      Temp-/Prio AUS: 3
-      AT_AUS: 5
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/temperatur/AUSSEN_GEFILTERT
-    address: 19
-    # description : GEFILTERTE_AUSSENTMPERATUR
-    scale: 0.1
-    # type: R
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/temperatur/heizgrenze/TAG_BETRIEB
-    set_topic:  bartl_wp/heizkreis/temperatur/heizgrenze/TAG_BETRIEB/set
-    address: 20
-    # description : HEIZGRENZE_TAG_BETRIEB
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/temperatur/heizgrenze/NACHT_BETRIEB
-    set_topic:  bartl_wp/heizkreis/temperatur/heizgrenze/NACHT_BETRIEB/set
-    address: 21
-    # description : HEIZGRENZE_NACHT_BETRIEB
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/temperatur/kuehlgrenze/TAG_BETRIEB
-    set_topic:  bartl_wp/heizkreis/temperatur/kuehlgrenze/TAG_BETRIEB/set
-    address: 22
-    # description : KUEHLGRENZE_TAG_BETRIEB
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/temperatur/kuehlgrenze/NACHT_BETRIEB
-    set_topic:  bartl_wp/heizkreis/temperatur/kuehlgrenze/NACHT_BETRIEB/set
-    address: 23
-    # description : KUEHLGRENZE_NACHT_BETRIEB
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/temperatur/vorlauf/MAXIMAL
-    set_topic:  bartl_wp/heizkreis/temperatur/vorlauf/MAXIMAL/set
-    address: 24
-    # description : VORLAUF_MAXIMAL
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/temperatur/vorlauf/MINIMAL
-    set_topic:  bartl_wp/heizkreis/temperatur/vorlauf/MINIMAL/set
-    address: 25
-    # description : VORLAUF_MINIMAL
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/sollspreizung_vl_rl/AKTUELL
-    address: 26
-    # description : AKTUELL_GUELTIGE_VL_RL_SOLLSPREIZUNG
-    scale: 0.1
-    # type: R
-    # unit: null
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/SOLLDREHZAHL_PUMPE_PERCENT
-    address: 27
-    # description : PUMPEN_SOLLDREHZAHL
-    # type: R
-    # unit: '%'
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/sollspreizung_vl_rl/HEIZBETRIEB
-    set_topic:  bartl_wp/heizkreis/sollspreizung_vl_rl/HEIZBETRIEB/set
-    address: 28
-    # description : SOLLSPREIZUNG_VL_RL_HEIZBETRIEB
-    scale: 0.1
-    # type: R/W
-    # unit: null
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/heizkreis/sollspreizung_vl_rl/KUEHLBETRIEB
-    set_topic:  bartl_wp/heizkreis/sollspreizung_vl_rl/KUEHLBETRIEB/set
-    address: 29
-    # description : SOLLSPREIZUNG_VL_RL_KUEHLBETRIEB
-    scale: 0.1
-    # type: R/W
-    # unit: null
-
-
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/50
-    address: 50
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/51
-    address: 51
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/52
-    address: 52
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/53
-    address: 53
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/54
-    address: 54
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/55
-    address: 55
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/56
-    address: 56
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/57
-    address: 57
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/58
-    address: 58
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/59
-    address: 59
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/60
-    address: 60
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/61
-    address: 61
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/62
-    address: 62
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/63
-    address: 63
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/64
-    address: 64
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/65
-    address: 65
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/66
-    address: 66
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/67
-    address: 67
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/68
-    address: 68
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/69
-    address: 69
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/70
-    address: 70
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/71
-    address: 71
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/72
-    address: 72
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/73
-    address: 73
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/74
-    address: 74
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/75
-    address: 75
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/76
-    address: 76
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/77
-    address: 77
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/78
-    address: 78
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/79
-    address: 79
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/100
-    address: 100
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/101
-    address: 101
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/102
-    address: 102
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/103
-    address: 103
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/104
-    address: 104
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/105
-    address: 105
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/106
-    address: 106
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/107
-    address: 107
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/108
-    address: 108
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/109
-    address: 109
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/110
-    address: 110
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/111
-    address: 111
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/112
-    address: 112
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/113
-    address: 113
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/114
-    address: 114
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/115
-    address: 115
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/116
-    address: 116
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/117
-    address: 117
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/118
-    address: 118
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/119
-    address: 119
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/120
-    address: 120
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/121
-    address: 121
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/122
-    address: 122
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/123
-    address: 123
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/124
-    address: 124
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/125
-    address: 125
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/126
-    address: 126
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/127
-    address: 127
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/128
-    address: 128
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/129
-    address: 129
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/150
-    address: 150
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/151
-    address: 151
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/152
-    address: 152
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/153
-    address: 153
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/154
-    address: 154
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/155
-    address: 155
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/156
-    address: 156
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/157
-    address: 157
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/158
-    address: 158
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/159
-    address: 159
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/160
-    address: 160
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/161
-    address: 161
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/162
-    address: 162
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/163
-    address: 163
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/164
-    address: 164
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/165
-    address: 165
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/166
-    address: 166
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/167
-    address: 167
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/168
-    address: 168
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/169
-    address: 169
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/170
-    address: 170
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/171
-    address: 171
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/172
-    address: 172
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/173
-    address: 173
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/174
-    address: 174
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/175
-    address: 175
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/176
-    address: 176
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/177
-    address: 177
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/178
-    address: 178
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/179
-    address: 179
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/200
-    address: 200
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/201
-    address: 201
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/202
-    address: 202
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/203
-    address: 203
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/204
-    address: 204
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/205
-    address: 205
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/206
-    address: 206
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/207
-    address: 207
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/208
-    address: 208
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/209
-    address: 209
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/210
-    address: 210
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/211
-    address: 211
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/212
-    address: 212
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/213
-    address: 213
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/214
-    address: 214
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/215
-    address: 215
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/216
-    address: 216
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/217
-    address: 217
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/218
-    address: 218
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/219
-    address: 219
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/220
-    address: 220
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/221
-    address: 221
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/222
-    address: 222
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/223
-    address: 223
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/224
-    address: 224
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/225
-    address: 225
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/226
-    address: 226
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/227
-    address: 227
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/228
-    address: 228
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/229
-    address: 229
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/250
-    address: 250
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/251
-    address: 251
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/252
-    address: 252
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/253
-    address: 253
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/254
-    address: 254
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/255
-    address: 255
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/256
-    address: 256
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/257
-    address: 257
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/258
-    address: 258
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/259
-    address: 259
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/260
-    address: 260
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/261
-    address: 261
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/262
-    address: 262
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/263
-    address: 263
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/264
-    address: 264
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/265
-    address: 265
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/266
-    address: 266
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/267
-    address: 267
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/268
-    address: 268
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/269
-    address: 269
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/270
-    address: 270
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/271
-    address: 271
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/272
-    address: 272
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/273
-    address: 273
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/274
-    address: 274
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/275
-    address: 275
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/276
-    address: 276
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/277
-    address: 277
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/278
-    address: 278
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/279
-    address: 279
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/300
-    address: 300
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/301
-    address: 301
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/302
-    address: 302
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/303
-    address: 303
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/304
-    address: 304
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/305
-    address: 305
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/306
-    address: 306
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/307
-    address: 307
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/308
-    address: 308
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/309
-    address: 309
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/310
-    address: 310
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/311
-    address: 311
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/312
-    address: 312
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/313
-    address: 313
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/314
-    address: 314
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/315
-    address: 315
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/316
-    address: 316
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/317
-    address: 317
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/318
-    address: 318
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/319
-    address: 319
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/320
-    address: 320
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/321
-    address: 321
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/322
-    address: 322
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/323
-    address: 323
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/324
-    address: 324
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/325
-    address: 325
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/326
-    address: 326
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/327
-    address: 327
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/328
-    address: 328
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/329
-    address: 329
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/350
-    address: 350
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/351
-    address: 351
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/352
-    address: 352
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/353
-    address: 353
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/354
-    address: 354
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/355
-    address: 355
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/356
-    address: 356
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/357
-    address: 357
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/358
-    address: 358
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/359
-    address: 359
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/360
-    address: 360
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/361
-    address: 361
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/362
-    address: 362
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/363
-    address: 363
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/364
-    address: 364
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/365
-    address: 365
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/366
-    address: 366
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/367
-    address: 367
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/368
-    address: 368
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/369
-    address: 369
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/370
-    address: 370
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/371
-    address: 371
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/372
-    address: 372
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/373
-    address: 373
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/374
-    address: 374
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/375
-    address: 375
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/376
-    address: 376
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/377
-    address: 377
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/378
-    address: 378
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/379
-    address: 379
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/400
-    address: 400
-
-
-
-
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/warmwasser/temperatur/OBEN
-    address: 401
-    # description: Aktuelle Warmwasser Temperatur Oben
-    scale: 0.1
-    # type: R
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/warmwasser/temperatur/STUETZTEMPERATUR
-    set_topic:  bartl_wp/warmwasser/temperatur/STUETZTEMPERATUR/set
-    address: 402
-    # description: Warmwasser Stütztemperatur
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/warmwasser/BETRIEBSART
-    set_topic:  bartl_wp/warmwasser/BETRIEBSART/set
+  - pub_topic: status/warmwasser/BETRIEBSART
+    set_topic: status/warmwasser/BETRIEBSART/set
     address: 403
     # description: Betriebsart Warmwasser
     # type: R/W
@@ -895,319 +31,25 @@ registers:
       Ein: 2
       Einmal Laden: 3
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/warmwasser/temperatur/SOLLWERT
-    set_topic:  bartl_wp/warmwasser/temperatur/SOLLWERT/set
-    address: 404
-    # description: Warmwasser Sollwert
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/warmwasser/temperatur/SOLLWERT_BEI_PV_NUTZUNG
-    set_topic:  bartl_wp/warmwasser/temperatur/SOLLWERT_BEI_PV_NUTZUNG/set
-    address: 405
-    # description: Warmwasser Sollwert bei PV_Nutzung
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/warmwasser/PV_UEBERSCHUSSNUTZUNG
-    set_topic:  bartl_wp/warmwasser/PV_UEBERSCHUSSNUTZUNG/set
-    address: 406
-    # description: PV UEberschussnutzung
-    # type: R/W
-    # unit: null
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/warmwasser/temperatur/UNTEN
-    address: 407
-    # description: Aktuelle Warmwasser Temperatur Unten
-    scale: 0.1
-    # type: R
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/warmwasser/ZIRKULATIONSPUMPE
-    address: 408
-    # description: Zirkulationspumpe
-    # type: R
-    # unit: null
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/warmwasser/temperatur/ZIRKULATIONSTEMPERATUR
-    address: 409
-    # description: Zirkulationstemperatur
-    scale: 0.1
-    # type: R
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/warmwasser/frischwasser/TEMPERATUR_SOLLWERT
-    set_topic:  bartl_wp/warmwasser/frischwasser/TEMPERATUR_SOLLWERT/set
-    address: 410
-    # description: Frischwasser Sollwert
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/warmwasser/frischwasser/TEMPERATUR_ISTWERT
-    address: 411
-    # description: Frischwasser Istwert
-    scale: 0.1
-    # type: R
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/warmwasser/frischwasser/STROEMUNGSSCHALTER
-    address: 412
-    # description: Strömungsschalter Frischwasser
-    # type: R
-    # unit: null
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/warmwasser/STROMVERSORGUNG_PUMPE
-    address: 413
-    # description: Stromversorgung Pumpe
-    scale: 0.1
-    # type: R
-    # unit: '%'
-    pub_only_on_change: false
-  # - pub_topic:  bartl_wp/warmwasser/DREHZALSOLLWERT_FRISCHWASSER
-  #   address: 414
-  #   # description: Drehzalsollwert Frischwasser
-  # #   scale: 10
-  #   # type: R
-  #   # unit: n/min
-  #     pub_only_on_change: false
-  # - pub_topic:  bartl_wp/warmwasser/frischwasseransteuerung/MINIMALE_DREHZAHL
-  #   set_topic:  bartl_wp/warmwasser/frischwasseransteuerung/MINIMALE_DREHZAHL/set
-  #   address: 415
-  #   # description: Minimale Drehzahl Frischwasseransteuerung
-  # #   scale: 10
-  #   # type: R/W
-  #   # unit: n/min
-  #   pub_only_on_change: false
-  # - pub_topic:  bartl_wp/warmwasser/frischwasseransteuerung/MAXIMALE_DREHZAHL
-  #   set_topic:  bartl_wp/warmwasser/frischwasseransteuerung/MAXIMALE_DREHZAHL/set
-  #   address: 416
-  #   # description: Maximale Drehzahl Frischwasseransteuerung
-  # #   scale: 10
-  #   # type: R/W
-  #   # unit: n/min
-  #     pub_only_on_change: false
-
-
-
-  - pub_topic:  bartl_wp/unknown/450
-    address: 450
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/451
-    address: 451
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/452
-    address: 452
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/453
-    address: 453
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/454
-    address: 454
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/455
-    address: 455
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/456
-    address: 456
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/457
-    address: 457
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/458
-    address: 458
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/459
-    address: 459
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/460
-    address: 460
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/461
-    address: 461
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/462
-    address: 462
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/463
-    address: 463
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/500
-    address: 500
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/501
-    address: 501
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/502
-    address: 502
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/503
-    address: 503
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/550
-    address: 550
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/551
-    address: 551
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/552
-    address: 552
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/553
-    address: 553
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/600
-    address: 600
-
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/puffer/istwert/TEMTEMPERATUR_OBEN
-    address: 601
-    # description: Istwert Puffer Oben
-    scale: 0.1
-    # type: R
-    # unit: °C
-
-
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/602
-    address: 602
-
-
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/puffer/istwert/TEMTEMPERATUR_UNTEN
-    address: 603
-    # description: Istwert Puffer Unten
-    scale: 0.1
-    # type: R
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/puffer/heizen/STUETZTEMPERATUR
-    set_topic:  bartl_wp/puffer/heizen/STUETZTEMPERATUR/set
-    address: 604
-    # description: Stütztemperatur (Heizen) solange sich die Außentemperatur unterhalb der im Eingestellten Heizgrenze befindet
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/puffer/heizen/MINIMALER_SOLLWERT_TEMTEMPERATUR
-    set_topic:  bartl_wp/puffer/heizen/MINIMALER_SOLLWERT_TEMPERATUR/set
-    address: 605
-    # description: Minimaler Sollwert Puffer (Heizen)
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/puffer/kuehlen/MAXIMALE_TEMPERATUR
-    set_topic:  bartl_wp/puffer/kuehlen/MAXIMALE_TEMPERATUR/set
-    address: 606
-    # description: Maximale Puffertemperatur (Kühlen) solange sich die Außentemperatur über der im Puffer Eingestellten Kühlgrenze befindet
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/puffer/SCHALTHYSTERESE_HEIZBETRIEB
-    set_topic:  bartl_wp/puffer/SCHALTHYSTERESE_HEIZBETRIEB/set
-    address: 607
-    # description: Schalthysterese Heizbetrieb
-    scale: 0.1
-    # type: R/W
-    # unit: null
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/puffer/SCHALTHYSTERESE_KUEHLBETRIEB
-    set_topic:  bartl_wp/puffer/SCHALTHYSTERESE_KUEHLBETRIEB/set
-    address: 608
-    # description: Schalthysterese Kühlbetrieb
-    scale: 0.1
-    # type: R/W
-    # unit: null
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/puffer/ueberschussenergie/WEITERGABE
-    set_topic:  bartl_wp/puffer/ueberschussenergie/WEITERGABE/set
-    address: 609
-    # description: UEberschussenergie Weitergabe
-    # type: R/W
-    # unit: null
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/puffer/ueberschussenergie/verwendung/SOLLWERT_HEIZEN
-    set_topic:  bartl_wp/puffer/ueberschussenergie/verwendung/SOLLWERT_HEIZEN/set
-    address: 610
-    # description: UEberschussenergie Verwendung Sollwert Heizen
-    scale: 0.1
-    # type: R/W
-    # unit: null
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/puffer/ueberschussenergie/verwendung/SOLLWERT_KUEHLEN
-    set_topic:  bartl_wp/puffer/ueberschussenergie/verwendung/SOLLWERT_KUEHLEN/set
-    address: 611
-    # description: UEberschussenergie Verwendung Sollwert Kühlen
-    scale: 0.1
-    # type: R/W
-    # unit: null
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/puffer/ueberschussenergie/VERWENDUNG
-    set_topic:  bartl_wp/puffer/ueberschussenergie/VERWENDUNG/set
-    address: 612
-    # description: UEberschussenergie Verwendung
-    # type: R/W
-    # unit: null
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/puffer/HEIZGRENZE_STUETZTEMPERATUR
-    set_topic:  bartl_wp/puffer/HEIZGRENZE_STUETZTEMPERATUR/set
-    address: 613
-    # description: Heizgrenze Stütztemperatur Puffer
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/puffer/HYSTERESE_HEIZGRENZE
-    set_topic:  bartl_wp/puffer/HYSTERESE_HEIZGRENZE/set
-    address: 614
-    # description: Hysterese Heizgrenze
-    scale: 0.1
-    # type: R/W
-    # unit: null
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/puffer/KUEHLGRENZE_STUETZTEMPERATUR
-    set_topic:  bartl_wp/puffer/KUEHLGRENZE_STUETZTEMPERATUR/set
-    address: 615
-    # description: Kühlgrenze Stütztemperatur Puffer
-    scale: 0.1
-    # type: R/W
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/puffer/HYSTERESE_KUEHLGRENZEGRENZE
-    set_topic:  bartl_wp/puffer/HYSTERESE_KUEHLGRENZEGRENZE/set
-    address: 616
-    # description: Hysterese Kühlgrenzegrenze
-    scale: 0.1
-    # type: R/W
-    # unit: null
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/puffer/AKTUELLER_TEMPERATUR_SOLLWERT
-    address: 617
-    # description: Aktueller Puffersollwert
-    scale: 0.1
-    # type: R
-    # unit: °C
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/puffer/HEIZANFORDERUNG
-    set_topic:  bartl_wp/puffer/HEIZANFORDERUNG/set
+  - pub_topic: status/puffer/HEIZANFORDERUNG
     address: 618
+    value_map:
+      AUS: 0
+      AKTIV: 1
     # description: Heizanforderung
     # type: R
     # unit: null
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/puffer/KUEHLANFORDERUNG
-    set_topic:  bartl_wp/puffer/KUEHLANFORDERUNG/set
+  - pub_topic: status/puffer/KUEHLANFORDERUNG
     address: 619
+    value_map:
+      AUS: 0
+      AKTIV: 1
     # description: Kühlanforderung
     # type: R
     # unit: null
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/puffer/UEBERSCHUSSNUTZUNG
-    set_topic:  bartl_wp/puffer/UEBERSCHUSSNUTZUNG/set
+  - pub_topic: status/puffer/UEBERSCHUSSNUTZUNG
     address: 620
     # description: UEberschussnutzung
     # type: R
@@ -1215,94 +57,8 @@ registers:
       Aus: 0
       Heizen: 1
       Kühlen: 2
-
-
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/625
-    address: 625
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/626
-    address: 626
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/627
-    address: 627
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/628
-    address: 628
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/629
-    address: 629
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/630
-    address: 630
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/632
-    address: 632
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/633
-    address: 633
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/634
-    address: 634
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/635
-    address: 635
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/636
-    address: 636
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/637
-    address: 637
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/638
-    address: 638
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/639
-    address: 639
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/640
-    address: 640
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/641
-    address: 641
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/642
-    address: 642
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/643
-    address: 643
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/644
-    address: 644
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/645
-    address: 645
-    pub_only_on_change: false
-
-  # - pub_topic:  bartl_wp/waermepumpe/gesamt/BETRIEBSSTUNDEN_ANFORDERUNGEN
-  #   address: 700
-  #   # description: Betriebsstunden der gesamten Anforderungen
-  #   # type: R
-  #   # unit: h_DE
-  #   pub_only_on_change: false
-  - pub_topic:  bartl_wp/waermepumpe/gesamt/ELEKTRISCHER_VERBRAUCH_KWH
-    address: 702
-    # description: Gesamt Elektrischerverbrauch
-    scale: 2.7777778E-07
-    # scale: 3.6E+06
-    # type: R
-    # unit: kWh
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/waermepumpe/gesamt/ERZEUGTE_WAERMEENERGIE_KWH
-    address: 703
-    # description: Gesamt Erzeugte Wärmeenergie
-    scale: 2.7777778E-07
-    # scale: 3.6E+06
-    # type: R
-    # unit: kWh
-    pub_only_on_change: false
-  - pub_topic:  bartl_wp/waermepumpe/STATUS
-    set_topic:  bartl_wp/waermepumpe/STATUS/set
+  - pub_topic: status/WAERMEPUMPE
     address: 704
     # description: Status der Wärmepumpe
     # type: R
@@ -1316,474 +72,1781 @@ registers:
       Sicherheitsabschaltung: 7
       Störung: 8
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/waermepumpe/MESSAGE_ID_OF_THE_FLOW_TEMPERATURESENSOR
+
+  ###
+  ###  Begin of normal configuration
+  ###
+  - pub_topic: heizkreis/raumtemperatur/AKTUELL
+    address: 1
+    # description: AKTUELLE_RAUMTEMPERATUR
+    scale: 0.1
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: heizkreis/raumtemperatur/AKTUELLER_SOLLWERT_INKLUSIVE_OFFSET
+    address: 2
+    # description: AKTUELLER_RAUMSOLLWERT_INKLUSIVE_RAUMSOLLWERT_OFFSET
+    scale: 0.1
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: heizkreis/raumtemperatur/AKTUELL_GUELTIGE
+    address: 3
+    # description: AKTUELL_GUELTIGE_RAUMTEMPERATUR
+    scale: 0.1
+    # type: R
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: heizkreis/raumtemperatur/heizbetrieb/NORMAL
+    address: 4
+    # description: NORMAL_RAUMTEMPERATUR_HEIZBETRIEB
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: heizkreis/raumtemperatur/heizbetrieb/NACHTABSENKUNG
+    set_topic: heizkreis/raumtemperatur/heizbetrieb/NACHTABSENKUNG/set
+    address: 5
+    # description: NACHTABSENK_RAUMTEMPERATUR_HEIZBETRIEB
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: heizkreis/raumtemperatur/OFFSET
+    set_topic: heizkreis/raumtemperatur/OFFSET/set
+    address: 6
+    # description: OFFSET_DER_AKTUELL_GUELTIGEN_RAUMTEMPERATUR
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: heizkreis/BETRIEBSART
+    set_topic: heizkreis/BETRIEBSART/set
+    address: 7
+    # description: BETRIEBSART_HEIZKREIS
+    # type: R/W
+    # value_map:
+    #   Standby: 0
+    #   Uhrenprogramm: 1
+    #   Tag: 2
+    #   Nacht: 3
+    #   Urlaub: 4
+    #   Party: 5
+    pub_only_on_change: false
+  - pub_topic: heizkreis/raumtemperatur/kuehlbetrieb/NORMAL
+    set_topic: heizkreis/raumtemperatur/kuehlbetrieb/NORMAL/set
+    address: 8
+    # description: NORMAL_RAUMTEMPERATUR_KUEHLBETRIEB
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: heizkreis/raumtemperatur/kuehlbetrieb/NACHTABSENKUNG
+    set_topic: heizkreis/raumtemperatur/kuehlbetrieb/NACHTABSENKUNG/set
+    address: 9
+    # description: NACHTABSENK_RAUMTEMPERATUR_KUEHLBETRIEB
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: heizkreis/AKTUELLE_RAUMFEUCHTE_PROZENT
+    address: 10
+    # desc_PROZENTription : AKTUELLE_RAUMFEUCHTE
+    # type: R
+    # unit: '%'
+    pub_only_on_change: false
+  - pub_topic: heizkreis/betriebsmodus/KUEHLEN_BEI_EXTERNER_ANSTEUERUNG
+    set_topic: heizkreis/betriebsmodus/KUEHLEN_BEI_EXTERNER_ANSTEUERUNG/set
+    address: 11
+    # description: BETRIEBSMODUS_KUEHLEN_BEI_EXTERNER_ANSTEUERUNG
+    # type: R/W
+    # unit: null
+    pub_only_on_change: false
+  - pub_topic: heizkreis/betriebsmodus/HEIZEN_BEI_EXTERNER_ANSTEUERUNG
+    set_topic: heizkreis/betriebsmodus/HEIZEN_BEI_EXTERNER_ANSTEUERUNG/set
+    address: 12
+    # description: BETRIEBSMODUS_HEIZEN_BEI_EXTERNER_ANSTEUERUNG
+    # type: R/W
+    # unit: null
+    pub_only_on_change: false
+  - pub_topic: heizkreis/temperatur/vorlauf/SOLLWERT_BEI_EXTERNER_ANSTEUERUNG
+    set_topic: heizkreis/temperatur/vorlauf/SOLLWERT_BEI_EXTERNER_ANSTEUERUNG/set
+    address: 13
+    # description: VORLAUFSOLLWERT_BEI_EXTERNER_ANSTEUERUNG
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: heizkreis/temperatur/vorlauf/ISTWERT
+    address: 14
+    # description: HEIZKREIS_VORLAUF_ISTWERT
+    scale: 0.1
+    # type: R
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: heizkreis/HEIZKREISPUMPE
+    address: 15
+    # description: HEIZKREISPUMPE
+    # type: R
+    # unit: null
+    pub_only_on_change: false
+  - pub_topic: heizkreis/temperatur/ruecklauf/ISTWERT
+    address: 16
+    # description: HEIZKREIS_RUECKLAUF_ISTWERT
+    scale: 0.1
+    # type: R
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: heizkreis/AKTUELLE_ANFORDERUNG1
+    address: 17
+    # description: AKTUELLE_ANFORDERUNG
+    # type: R
+    # value_map:
+    #   AUS: 0
+    #   AKTIV: 1
+    #   Temp-/Prio AUS: 3
+    #   AT_AUS: 5
+    pub_only_on_change: false
+  - pub_topic: heizkreis/AKTUELLE_ANFORDERUNG2
+    address: 18
+    description: AKTUELLE_ANFORDERUNG
+    # type: R
+    # value_map:
+    #   AUS: 0
+    #   AKTIV: 1
+    #   Temp-/Prio AUS: 3
+    #   AT_AUS: 5
+    pub_only_on_change: false
+  - pub_topic: heizkreis/temperatur/AUSSEN_GEFILTERT
+    address: 19
+    # description: GEFILTERTE_AUSSENTMPERATUR
+    scale: 0.1
+    # type: R
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: heizkreis/temperatur/heizgrenze/TAG_BETRIEB
+    set_topic: heizkreis/temperatur/heizgrenze/TAG_BETRIEB/set
+    address: 20
+    # description: HEIZGRENZE_TAG_BETRIEB
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: heizkreis/temperatur/heizgrenze/NACHT_BETRIEB
+    set_topic: heizkreis/temperatur/heizgrenze/NACHT_BETRIEB/set
+    address: 21
+    # description: HEIZGRENZE_NACHT_BETRIEB
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: heizkreis/temperatur/kuehlgrenze/TAG_BETRIEB
+    set_topic: heizkreis/temperatur/kuehlgrenze/TAG_BETRIEB/set
+    address: 22
+    # description: KUEHLGRENZE_TAG_BETRIEB
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: heizkreis/temperatur/kuehlgrenze/NACHT_BETRIEB
+    set_topic: heizkreis/temperatur/kuehlgrenze/NACHT_BETRIEB/set
+    address: 23
+    # description: KUEHLGRENZE_NACHT_BETRIEB
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: heizkreis/temperatur/vorlauf/MAXIMAL
+    set_topic: heizkreis/temperatur/vorlauf/MAXIMAL/set
+    address: 24
+    # description: VORLAUF_MAXIMAL
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: heizkreis/temperatur/vorlauf/MINIMAL
+    set_topic: heizkreis/temperatur/vorlauf/MINIMAL/set
+    address: 25
+    # description: VORLAUF_MINIMAL
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: heizkreis/sollspreizung_vl_rl/AKTUELL
+    address: 26
+    # description: AKTUELL_GUELTIGE_VL_RL_SOLLSPREIZUNG
+    scale: 0.1
+    # type: R
+    # unit: null
+    pub_only_on_change: false
+  - pub_topic: heizkreis/SOLLDREHZAHL_PUMPE_PERCENT
+    address: 27
+    # description: PUMPEN_SOLLDREHZAHL
+    # type: R
+    # unit: '%'
+    pub_only_on_change: false
+  - pub_topic: heizkreis/sollspreizung_vl_rl/HEIZBETRIEB
+    set_topic: heizkreis/sollspreizung_vl_rl/HEIZBETRIEB/set
+    address: 28
+    # description: SOLLSPREIZUNG_VL_RL_HEIZBETRIEB
+    scale: 0.1
+    # type: R/W
+    # unit: null
+    pub_only_on_change: false
+  - pub_topic: heizkreis/sollspreizung_vl_rl/KUEHLBETRIEB
+    set_topic: heizkreis/sollspreizung_vl_rl/KUEHLBETRIEB/set
+    address: 29
+    # description: SOLLSPREIZUNG_VL_RL_KUEHLBETRIEB
+    scale: 0.1
+    # type: R/W
+    # unit: null
+
+
+    pub_only_on_change: false
+  - pub_topic: unknown/50
+    address: 50
+    pub_only_on_change: false
+  - pub_topic: unknown/51
+    address: 51
+    pub_only_on_change: false
+  - pub_topic: unknown/52
+    address: 52
+    pub_only_on_change: false
+  - pub_topic: unknown/53
+    address: 53
+    pub_only_on_change: false
+  - pub_topic: unknown/54
+    address: 54
+    pub_only_on_change: false
+  - pub_topic: unknown/55
+    address: 55
+    pub_only_on_change: false
+  - pub_topic: unknown/56
+    address: 56
+    pub_only_on_change: false
+  - pub_topic: unknown/57
+    address: 57
+    pub_only_on_change: false
+  - pub_topic: unknown/58
+    address: 58
+    pub_only_on_change: false
+  - pub_topic: unknown/59
+    address: 59
+    pub_only_on_change: false
+  - pub_topic: unknown/60
+    address: 60
+    pub_only_on_change: false
+  - pub_topic: unknown/61
+    address: 61
+    pub_only_on_change: false
+  - pub_topic: unknown/62
+    address: 62
+    pub_only_on_change: false
+  - pub_topic: unknown/63
+    address: 63
+    pub_only_on_change: false
+  - pub_topic: unknown/64
+    address: 64
+    pub_only_on_change: false
+  - pub_topic: unknown/65
+    address: 65
+    pub_only_on_change: false
+  - pub_topic: unknown/66
+    address: 66
+    pub_only_on_change: false
+  - pub_topic: unknown/67
+    address: 67
+    pub_only_on_change: false
+  - pub_topic: unknown/68
+    address: 68
+    pub_only_on_change: false
+  - pub_topic: unknown/69
+    address: 69
+    pub_only_on_change: false
+  - pub_topic: unknown/70
+    address: 70
+    pub_only_on_change: false
+  - pub_topic: unknown/71
+    address: 71
+    pub_only_on_change: false
+  - pub_topic: unknown/72
+    address: 72
+    pub_only_on_change: false
+  - pub_topic: unknown/73
+    address: 73
+    pub_only_on_change: false
+  - pub_topic: unknown/74
+    address: 74
+    pub_only_on_change: false
+  - pub_topic: unknown/75
+    address: 75
+    pub_only_on_change: false
+  - pub_topic: unknown/76
+    address: 76
+    pub_only_on_change: false
+  - pub_topic: unknown/77
+    address: 77
+    pub_only_on_change: false
+  - pub_topic: unknown/78
+    address: 78
+    pub_only_on_change: false
+  - pub_topic: unknown/79
+    address: 79
+    pub_only_on_change: false
+  - pub_topic: unknown/100
+    address: 100
+    pub_only_on_change: false
+  - pub_topic: unknown/101
+    address: 101
+    pub_only_on_change: false
+  - pub_topic: unknown/102
+    address: 102
+    pub_only_on_change: false
+  - pub_topic: unknown/103
+    address: 103
+    pub_only_on_change: false
+  - pub_topic: unknown/104
+    address: 104
+    pub_only_on_change: false
+  - pub_topic: unknown/105
+    address: 105
+    pub_only_on_change: false
+  - pub_topic: unknown/106
+    address: 106
+    pub_only_on_change: false
+  - pub_topic: unknown/107
+    address: 107
+    pub_only_on_change: false
+  - pub_topic: unknown/108
+    address: 108
+    pub_only_on_change: false
+  - pub_topic: unknown/109
+    address: 109
+    pub_only_on_change: false
+  - pub_topic: unknown/110
+    address: 110
+    pub_only_on_change: false
+  - pub_topic: unknown/111
+    address: 111
+    pub_only_on_change: false
+  - pub_topic: unknown/112
+    address: 112
+    pub_only_on_change: false
+  - pub_topic: unknown/113
+    address: 113
+    pub_only_on_change: false
+  - pub_topic: unknown/114
+    address: 114
+    pub_only_on_change: false
+  - pub_topic: unknown/115
+    address: 115
+    pub_only_on_change: false
+  - pub_topic: unknown/116
+    address: 116
+    pub_only_on_change: false
+  - pub_topic: unknown/117
+    address: 117
+    pub_only_on_change: false
+  - pub_topic: unknown/118
+    address: 118
+    pub_only_on_change: false
+  - pub_topic: unknown/119
+    address: 119
+    pub_only_on_change: false
+  - pub_topic: unknown/120
+    address: 120
+    pub_only_on_change: false
+  - pub_topic: unknown/121
+    address: 121
+    pub_only_on_change: false
+  - pub_topic: unknown/122
+    address: 122
+    pub_only_on_change: false
+  - pub_topic: unknown/123
+    address: 123
+    pub_only_on_change: false
+  - pub_topic: unknown/124
+    address: 124
+    pub_only_on_change: false
+  - pub_topic: unknown/125
+    address: 125
+    pub_only_on_change: false
+  - pub_topic: unknown/126
+    address: 126
+    pub_only_on_change: false
+  - pub_topic: unknown/127
+    address: 127
+    pub_only_on_change: false
+  - pub_topic: unknown/128
+    address: 128
+    pub_only_on_change: false
+  - pub_topic: unknown/129
+    address: 129
+    pub_only_on_change: false
+  - pub_topic: unknown/150
+    address: 150
+    pub_only_on_change: false
+  - pub_topic: unknown/151
+    address: 151
+    pub_only_on_change: false
+  - pub_topic: unknown/152
+    address: 152
+    pub_only_on_change: false
+  - pub_topic: unknown/153
+    address: 153
+    pub_only_on_change: false
+  - pub_topic: unknown/154
+    address: 154
+    pub_only_on_change: false
+  - pub_topic: unknown/155
+    address: 155
+    pub_only_on_change: false
+  - pub_topic: unknown/156
+    address: 156
+    pub_only_on_change: false
+  - pub_topic: unknown/157
+    address: 157
+    pub_only_on_change: false
+  - pub_topic: unknown/158
+    address: 158
+    pub_only_on_change: false
+  - pub_topic: unknown/159
+    address: 159
+    pub_only_on_change: false
+  - pub_topic: unknown/160
+    address: 160
+    pub_only_on_change: false
+  - pub_topic: unknown/161
+    address: 161
+    pub_only_on_change: false
+  - pub_topic: unknown/162
+    address: 162
+    pub_only_on_change: false
+  - pub_topic: unknown/163
+    address: 163
+    pub_only_on_change: false
+  - pub_topic: unknown/164
+    address: 164
+    pub_only_on_change: false
+  - pub_topic: unknown/165
+    address: 165
+    pub_only_on_change: false
+  - pub_topic: unknown/166
+    address: 166
+    pub_only_on_change: false
+  - pub_topic: unknown/167
+    address: 167
+    pub_only_on_change: false
+  - pub_topic: unknown/168
+    address: 168
+    pub_only_on_change: false
+  - pub_topic: unknown/169
+    address: 169
+    pub_only_on_change: false
+  - pub_topic: unknown/170
+    address: 170
+    pub_only_on_change: false
+  - pub_topic: unknown/171
+    address: 171
+    pub_only_on_change: false
+  - pub_topic: unknown/172
+    address: 172
+    pub_only_on_change: false
+  - pub_topic: unknown/173
+    address: 173
+    pub_only_on_change: false
+  - pub_topic: unknown/174
+    address: 174
+    pub_only_on_change: false
+  - pub_topic: unknown/175
+    address: 175
+    pub_only_on_change: false
+  - pub_topic: unknown/176
+    address: 176
+    pub_only_on_change: false
+  - pub_topic: unknown/177
+    address: 177
+    pub_only_on_change: false
+  - pub_topic: unknown/178
+    address: 178
+    pub_only_on_change: false
+  - pub_topic: unknown/179
+    address: 179
+    pub_only_on_change: false
+  - pub_topic: unknown/200
+    address: 200
+    pub_only_on_change: false
+  - pub_topic: unknown/201
+    address: 201
+    pub_only_on_change: false
+  - pub_topic: unknown/202
+    address: 202
+    pub_only_on_change: false
+  - pub_topic: unknown/203
+    address: 203
+    pub_only_on_change: false
+  - pub_topic: unknown/204
+    address: 204
+    pub_only_on_change: false
+  - pub_topic: unknown/205
+    address: 205
+    pub_only_on_change: false
+  - pub_topic: unknown/206
+    address: 206
+    pub_only_on_change: false
+  - pub_topic: unknown/207
+    address: 207
+    pub_only_on_change: false
+  - pub_topic: unknown/208
+    address: 208
+    pub_only_on_change: false
+  - pub_topic: unknown/209
+    address: 209
+    pub_only_on_change: false
+  - pub_topic: unknown/210
+    address: 210
+    pub_only_on_change: false
+  - pub_topic: unknown/211
+    address: 211
+    pub_only_on_change: false
+  - pub_topic: unknown/212
+    address: 212
+    pub_only_on_change: false
+  - pub_topic: unknown/213
+    address: 213
+    pub_only_on_change: false
+  - pub_topic: unknown/214
+    address: 214
+    pub_only_on_change: false
+  - pub_topic: unknown/215
+    address: 215
+    pub_only_on_change: false
+  - pub_topic: unknown/216
+    address: 216
+    pub_only_on_change: false
+  - pub_topic: unknown/217
+    address: 217
+    pub_only_on_change: false
+  - pub_topic: unknown/218
+    address: 218
+    pub_only_on_change: false
+  - pub_topic: unknown/219
+    address: 219
+    pub_only_on_change: false
+  - pub_topic: unknown/220
+    address: 220
+    pub_only_on_change: false
+  - pub_topic: unknown/221
+    address: 221
+    pub_only_on_change: false
+  - pub_topic: unknown/222
+    address: 222
+    pub_only_on_change: false
+  - pub_topic: unknown/223
+    address: 223
+    pub_only_on_change: false
+  - pub_topic: unknown/224
+    address: 224
+    pub_only_on_change: false
+  - pub_topic: unknown/225
+    address: 225
+    pub_only_on_change: false
+  - pub_topic: unknown/226
+    address: 226
+    pub_only_on_change: false
+  - pub_topic: unknown/227
+    address: 227
+    pub_only_on_change: false
+  - pub_topic: unknown/228
+    address: 228
+    pub_only_on_change: false
+  - pub_topic: unknown/229
+    address: 229
+    pub_only_on_change: false
+  - pub_topic: unknown/250
+    address: 250
+    pub_only_on_change: false
+  - pub_topic: unknown/251
+    address: 251
+    pub_only_on_change: false
+  - pub_topic: unknown/252
+    address: 252
+    pub_only_on_change: false
+  - pub_topic: unknown/253
+    address: 253
+    pub_only_on_change: false
+  - pub_topic: unknown/254
+    address: 254
+    pub_only_on_change: false
+  - pub_topic: unknown/255
+    address: 255
+    pub_only_on_change: false
+  - pub_topic: unknown/256
+    address: 256
+    pub_only_on_change: false
+  - pub_topic: unknown/257
+    address: 257
+    pub_only_on_change: false
+  - pub_topic: unknown/258
+    address: 258
+    pub_only_on_change: false
+  - pub_topic: unknown/259
+    address: 259
+    pub_only_on_change: false
+  - pub_topic: unknown/260
+    address: 260
+    pub_only_on_change: false
+  - pub_topic: unknown/261
+    address: 261
+    pub_only_on_change: false
+  - pub_topic: unknown/262
+    address: 262
+    pub_only_on_change: false
+  - pub_topic: unknown/263
+    address: 263
+    pub_only_on_change: false
+  - pub_topic: unknown/264
+    address: 264
+    pub_only_on_change: false
+  - pub_topic: unknown/265
+    address: 265
+    pub_only_on_change: false
+  - pub_topic: unknown/266
+    address: 266
+    pub_only_on_change: false
+  - pub_topic: unknown/267
+    address: 267
+    pub_only_on_change: false
+  - pub_topic: unknown/268
+    address: 268
+    pub_only_on_change: false
+  - pub_topic: unknown/269
+    address: 269
+    pub_only_on_change: false
+  - pub_topic: unknown/270
+    address: 270
+    pub_only_on_change: false
+  - pub_topic: unknown/271
+    address: 271
+    pub_only_on_change: false
+  - pub_topic: unknown/272
+    address: 272
+    pub_only_on_change: false
+  - pub_topic: unknown/273
+    address: 273
+    pub_only_on_change: false
+  - pub_topic: unknown/274
+    address: 274
+    pub_only_on_change: false
+  - pub_topic: unknown/275
+    address: 275
+    pub_only_on_change: false
+  - pub_topic: unknown/276
+    address: 276
+    pub_only_on_change: false
+  - pub_topic: unknown/277
+    address: 277
+    pub_only_on_change: false
+  - pub_topic: unknown/278
+    address: 278
+    pub_only_on_change: false
+  - pub_topic: unknown/279
+    address: 279
+    pub_only_on_change: false
+  - pub_topic: unknown/300
+    address: 300
+    pub_only_on_change: false
+  - pub_topic: unknown/301
+    address: 301
+    pub_only_on_change: false
+  - pub_topic: unknown/302
+    address: 302
+    pub_only_on_change: false
+  - pub_topic: unknown/303
+    address: 303
+    pub_only_on_change: false
+  - pub_topic: unknown/304
+    address: 304
+    pub_only_on_change: false
+  - pub_topic: unknown/305
+    address: 305
+    pub_only_on_change: false
+  - pub_topic: unknown/306
+    address: 306
+    pub_only_on_change: false
+  - pub_topic: unknown/307
+    address: 307
+    pub_only_on_change: false
+  - pub_topic: unknown/308
+    address: 308
+    pub_only_on_change: false
+  - pub_topic: unknown/309
+    address: 309
+    pub_only_on_change: false
+  - pub_topic: unknown/310
+    address: 310
+    pub_only_on_change: false
+  - pub_topic: unknown/311
+    address: 311
+    pub_only_on_change: false
+  - pub_topic: unknown/312
+    address: 312
+    pub_only_on_change: false
+  - pub_topic: unknown/313
+    address: 313
+    pub_only_on_change: false
+  - pub_topic: unknown/314
+    address: 314
+    pub_only_on_change: false
+  - pub_topic: unknown/315
+    address: 315
+    pub_only_on_change: false
+  - pub_topic: unknown/316
+    address: 316
+    pub_only_on_change: false
+  - pub_topic: unknown/317
+    address: 317
+    pub_only_on_change: false
+  - pub_topic: unknown/318
+    address: 318
+    pub_only_on_change: false
+  - pub_topic: unknown/319
+    address: 319
+    pub_only_on_change: false
+  - pub_topic: unknown/320
+    address: 320
+    pub_only_on_change: false
+  - pub_topic: unknown/321
+    address: 321
+    pub_only_on_change: false
+  - pub_topic: unknown/322
+    address: 322
+    pub_only_on_change: false
+  - pub_topic: unknown/323
+    address: 323
+    pub_only_on_change: false
+  - pub_topic: unknown/324
+    address: 324
+    pub_only_on_change: false
+  - pub_topic: unknown/325
+    address: 325
+    pub_only_on_change: false
+  - pub_topic: unknown/326
+    address: 326
+    pub_only_on_change: false
+  - pub_topic: unknown/327
+    address: 327
+    pub_only_on_change: false
+  - pub_topic: unknown/328
+    address: 328
+    pub_only_on_change: false
+  - pub_topic: unknown/329
+    address: 329
+    pub_only_on_change: false
+  - pub_topic: unknown/350
+    address: 350
+    pub_only_on_change: false
+  - pub_topic: unknown/351
+    address: 351
+    pub_only_on_change: false
+  - pub_topic: unknown/352
+    address: 352
+    pub_only_on_change: false
+  - pub_topic: unknown/353
+    address: 353
+    pub_only_on_change: false
+  - pub_topic: unknown/354
+    address: 354
+    pub_only_on_change: false
+  - pub_topic: unknown/355
+    address: 355
+    pub_only_on_change: false
+  - pub_topic: unknown/356
+    address: 356
+    pub_only_on_change: false
+  - pub_topic: unknown/357
+    address: 357
+    pub_only_on_change: false
+  - pub_topic: unknown/358
+    address: 358
+    pub_only_on_change: false
+  - pub_topic: unknown/359
+    address: 359
+    pub_only_on_change: false
+  - pub_topic: unknown/360
+    address: 360
+    pub_only_on_change: false
+  - pub_topic: unknown/361
+    address: 361
+    pub_only_on_change: false
+  - pub_topic: unknown/362
+    address: 362
+    pub_only_on_change: false
+  - pub_topic: unknown/363
+    address: 363
+    pub_only_on_change: false
+  - pub_topic: unknown/364
+    address: 364
+    pub_only_on_change: false
+  - pub_topic: unknown/365
+    address: 365
+    pub_only_on_change: false
+  - pub_topic: unknown/366
+    address: 366
+    pub_only_on_change: false
+  - pub_topic: unknown/367
+    address: 367
+    pub_only_on_change: false
+  - pub_topic: unknown/368
+    address: 368
+    pub_only_on_change: false
+  - pub_topic: unknown/369
+    address: 369
+    pub_only_on_change: false
+  - pub_topic: unknown/370
+    address: 370
+    pub_only_on_change: false
+  - pub_topic: unknown/371
+    address: 371
+    pub_only_on_change: false
+  - pub_topic: unknown/372
+    address: 372
+    pub_only_on_change: false
+  - pub_topic: unknown/373
+    address: 373
+    pub_only_on_change: false
+  - pub_topic: unknown/374
+    address: 374
+    pub_only_on_change: false
+  - pub_topic: unknown/375
+    address: 375
+    pub_only_on_change: false
+  - pub_topic: unknown/376
+    address: 376
+    pub_only_on_change: false
+  - pub_topic: unknown/377
+    address: 377
+    pub_only_on_change: false
+  - pub_topic: unknown/378
+    address: 378
+    pub_only_on_change: false
+  - pub_topic: unknown/379
+    address: 379
+    pub_only_on_change: false
+  - pub_topic: unknown/400
+    address: 400
+
+
+
+
+    pub_only_on_change: false
+  - pub_topic: warmwasser/temperatur/OBEN
+    address: 401
+    # description: Aktuelle Warmwasser Temperatur Oben
+    scale: 0.1
+    # type: R
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: warmwasser/temperatur/STUETZTEMPERATUR
+    set_topic: warmwasser/temperatur/STUETZTEMPERATUR/set
+    address: 402
+    # description: Warmwasser Stütztemperatur
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: warmwasser/BETRIEBSART
+    set_topic: warmwasser/BETRIEBSART/set
+    address: 403
+    # description: Betriebsart Warmwasser
+    # type: R/W
+    # value_map:
+    #   Aus: 0
+    #   Auto: 1
+    #   Ein: 2
+    #   Einmal Laden: 3
+    pub_only_on_change: false
+  - pub_topic: warmwasser/temperatur/SOLLWERT
+    set_topic: warmwasser/temperatur/SOLLWERT/set
+    address: 404
+    # description: Warmwasser Sollwert
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: warmwasser/temperatur/SOLLWERT_BEI_PV_NUTZUNG
+    set_topic: warmwasser/temperatur/SOLLWERT_BEI_PV_NUTZUNG/set
+    address: 405
+    # description: Warmwasser Sollwert bei PV_Nutzung
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: warmwasser/PV_UEBERSCHUSSNUTZUNG
+    set_topic: warmwasser/PV_UEBERSCHUSSNUTZUNG/set
+    address: 406
+    # description: PV UEberschussnutzung
+    # type: R/W
+    # unit: null
+    pub_only_on_change: false
+  - pub_topic: warmwasser/temperatur/UNTEN
+    address: 407
+    # description: Aktuelle Warmwasser Temperatur Unten
+    scale: 0.1
+    # type: R
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: warmwasser/ZIRKULATIONSPUMPE
+    address: 408
+    # description: Zirkulationspumpe
+    # type: R
+    # unit: null
+    pub_only_on_change: false
+  - pub_topic: warmwasser/temperatur/ZIRKULATIONSTEMPERATUR
+    address: 409
+    # description: Zirkulationstemperatur
+    scale: 0.1
+    # type: R
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: warmwasser/frischwasser/TEMPERATUR_SOLLWERT
+    set_topic: warmwasser/frischwasser/TEMPERATUR_SOLLWERT/set
+    address: 410
+    # description: Frischwasser Sollwert
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: warmwasser/frischwasser/TEMPERATUR_ISTWERT
+    address: 411
+    # description: Frischwasser Istwert
+    scale: 0.1
+    # type: R
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: warmwasser/frischwasser/STROEMUNGSSCHALTER
+    address: 412
+    # description: Strömungsschalter Frischwasser
+    # type: R
+    # unit: null
+    pub_only_on_change: false
+  - pub_topic: warmwasser/STROMVERSORGUNG_PUMPE
+    address: 413
+    # description: Stromversorgung Pumpe
+    scale: 0.1
+    # type: R
+    # unit: '%'
+    pub_only_on_change: false
+  # - pub_topic: warmwasser/DREHZALSOLLWERT_FRISCHWASSER
+  #   address: 414
+  #   # description: Drehzalsollwert Frischwasser
+  # #   scale: 10
+  #   # type: R
+  #   # unit: n/min
+  #     pub_only_on_change: false
+  # - pub_topic: warmwasser/frischwasseransteuerung/MINIMALE_DREHZAHL
+  #   set_topic: warmwasser/frischwasseransteuerung/MINIMALE_DREHZAHL/set
+  #   address: 415
+  #   # description: Minimale Drehzahl Frischwasseransteuerung
+  # #   scale: 10
+  #   # type: R/W
+  #   # unit: n/min
+  #   pub_only_on_change: false
+  # - pub_topic: warmwasser/frischwasseransteuerung/MAXIMALE_DREHZAHL
+  #   set_topic: warmwasser/frischwasseransteuerung/MAXIMALE_DREHZAHL/set
+  #   address: 416
+  #   # description: Maximale Drehzahl Frischwasseransteuerung
+  # #   scale: 10
+  #   # type: R/W
+  #   # unit: n/min
+  #     pub_only_on_change: false
+
+
+
+  - pub_topic: unknown/450
+    address: 450
+    pub_only_on_change: false
+  - pub_topic: unknown/451
+    address: 451
+    pub_only_on_change: false
+  - pub_topic: unknown/452
+    address: 452
+    pub_only_on_change: false
+  - pub_topic: unknown/453
+    address: 453
+    pub_only_on_change: false
+  - pub_topic: unknown/454
+    address: 454
+    pub_only_on_change: false
+  - pub_topic: unknown/455
+    address: 455
+    pub_only_on_change: false
+  - pub_topic: unknown/456
+    address: 456
+    pub_only_on_change: false
+  - pub_topic: unknown/457
+    address: 457
+    pub_only_on_change: false
+  - pub_topic: unknown/458
+    address: 458
+    pub_only_on_change: false
+  - pub_topic: unknown/459
+    address: 459
+    pub_only_on_change: false
+  - pub_topic: unknown/460
+    address: 460
+    pub_only_on_change: false
+  - pub_topic: unknown/461
+    address: 461
+    pub_only_on_change: false
+  - pub_topic: unknown/462
+    address: 462
+    pub_only_on_change: false
+  - pub_topic: unknown/463
+    address: 463
+    pub_only_on_change: false
+  - pub_topic: unknown/500
+    address: 500
+    pub_only_on_change: false
+  - pub_topic: unknown/501
+    address: 501
+    pub_only_on_change: false
+  - pub_topic: unknown/502
+    address: 502
+    pub_only_on_change: false
+  - pub_topic: unknown/503
+    address: 503
+    pub_only_on_change: false
+  - pub_topic: unknown/550
+    address: 550
+    pub_only_on_change: false
+  - pub_topic: unknown/551
+    address: 551
+    pub_only_on_change: false
+  - pub_topic: unknown/552
+    address: 552
+    pub_only_on_change: false
+  - pub_topic: unknown/553
+    address: 553
+    pub_only_on_change: false
+  - pub_topic: unknown/600
+    address: 600
+    pub_only_on_change: false
+  - pub_topic: puffer/istwert/TEMTEMPERATUR_OBEN
+    address: 601
+    # description: Istwert Puffer Oben
+    scale: 0.1
+    # type: R
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: unknown/602
+    address: 602
+    pub_only_on_change: false
+  - pub_topic: puffer/istwert/TEMTEMPERATUR_UNTEN
+    address: 603
+    # description: Istwert Puffer Unten
+    scale: 0.1
+    # type: R
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: puffer/heizen/STUETZTEMPERATUR
+    set_topic: puffer/heizen/STUETZTEMPERATUR/set
+    address: 604
+    # description: Stütztemperatur (Heizen) solange sich die Außentemperatur unterhalb der im Eingestellten Heizgrenze befindet
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: puffer/heizen/MINIMALER_SOLLWERT_TEMTEMPERATUR
+    set_topic: puffer/heizen/MINIMALER_SOLLWERT_TEMPERATUR/set
+    address: 605
+    # description: Minimaler Sollwert Puffer (Heizen)
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: puffer/kuehlen/MAXIMALE_TEMPERATUR
+    set_topic: puffer/kuehlen/MAXIMALE_TEMPERATUR/set
+    address: 606
+    # description: Maximale Puffertemperatur (Kühlen) solange sich die Außentemperatur über der im Puffer Eingestellten Kühlgrenze befindet
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: puffer/SCHALTHYSTERESE_HEIZBETRIEB
+    set_topic: puffer/SCHALTHYSTERESE_HEIZBETRIEB/set
+    address: 607
+    # description: Schalthysterese Heizbetrieb
+    scale: 0.1
+    # type: R/W
+    # unit: null
+    pub_only_on_change: false
+  - pub_topic: puffer/SCHALTHYSTERESE_KUEHLBETRIEB
+    set_topic: puffer/SCHALTHYSTERESE_KUEHLBETRIEB/set
+    address: 608
+    # description: Schalthysterese Kühlbetrieb
+    scale: 0.1
+    # type: R/W
+    # unit: null
+    pub_only_on_change: false
+  - pub_topic: puffer/ueberschussenergie/WEITERGABE
+    set_topic: puffer/ueberschussenergie/WEITERGABE/set
+    address: 609
+    # description: UEberschussenergie Weitergabe
+    # type: R/W
+    # unit: null
+    pub_only_on_change: false
+  - pub_topic: puffer/ueberschussenergie/verwendung/SOLLWERT_HEIZEN
+    set_topic: puffer/ueberschussenergie/verwendung/SOLLWERT_HEIZEN/set
+    address: 610
+    # description: UEberschussenergie Verwendung Sollwert Heizen
+    scale: 0.1
+    # type: R/W
+    # unit: null
+    pub_only_on_change: false
+  - pub_topic: puffer/ueberschussenergie/verwendung/SOLLWERT_KUEHLEN
+    set_topic: puffer/ueberschussenergie/verwendung/SOLLWERT_KUEHLEN/set
+    address: 611
+    # description: UEberschussenergie Verwendung Sollwert Kühlen
+    scale: 0.1
+    # type: R/W
+    # unit: null
+    pub_only_on_change: false
+  - pub_topic: puffer/ueberschussenergie/VERWENDUNG
+    set_topic: puffer/ueberschussenergie/VERWENDUNG/set
+    address: 612
+    # description: UEberschussenergie Verwendung
+    # type: R/W
+    # unit: null
+    pub_only_on_change: false
+  - pub_topic: puffer/HEIZGRENZE_STUETZTEMPERATUR
+    set_topic: puffer/HEIZGRENZE_STUETZTEMPERATUR/set
+    address: 613
+    # description: Heizgrenze Stütztemperatur Puffer
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: puffer/HYSTERESE_HEIZGRENZE
+    set_topic: puffer/HYSTERESE_HEIZGRENZE/set
+    address: 614
+    # description: Hysterese Heizgrenze
+    scale: 0.1
+    # type: R/W
+    # unit: null
+    pub_only_on_change: false
+  - pub_topic: puffer/KUEHLGRENZE_STUETZTEMPERATUR
+    set_topic: puffer/KUEHLGRENZE_STUETZTEMPERATUR/set
+    address: 615
+    # description: Kühlgrenze Stütztemperatur Puffer
+    scale: 0.1
+    # type: R/W
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: puffer/HYSTERESE_KUEHLGRENZEGRENZE
+    set_topic: puffer/HYSTERESE_KUEHLGRENZEGRENZE/set
+    address: 616
+    # description: Hysterese Kühlgrenzegrenze
+    scale: 0.1
+    # type: R/W
+    # unit: null
+    pub_only_on_change: false
+  - pub_topic: puffer/AKTUELLER_TEMPERATUR_SOLLWERT
+    address: 617
+    # description: Aktueller Puffersollwert
+    scale: 0.1
+    # type: R
+    # unit: °C
+    pub_only_on_change: false
+  - pub_topic: puffer/HEIZANFORDERUNG
+    address: 618
+    # value_map:
+    #   AUS: 0
+    #   AKTIV: 1
+    # description: Heizanforderung
+    # type: R
+    # unit: null
+    pub_only_on_change: false
+  - pub_topic: puffer/KUEHLANFORDERUNG
+    address: 619
+    # value_map:
+    #   AUS: 0
+    #   AKTIV: 1
+    # description: Kühlanforderung
+    # type: R
+    # unit: null
+    pub_only_on_change: false
+  - pub_topic: puffer/UEBERSCHUSSNUTZUNG
+    address: 620
+    # description: UEberschussnutzung
+    # type: R
+    # value_map:
+    #   Aus: 0
+    #   Heizen: 1
+    #   Kühlen: 2
+    pub_only_on_change: false
+
+
+  - pub_topic: unknown/625
+    address: 625
+    pub_only_on_change: false
+  - pub_topic: unknown/626
+    address: 626
+    pub_only_on_change: false
+  - pub_topic: unknown/627
+    address: 627
+    pub_only_on_change: false
+  - pub_topic: unknown/628
+    address: 628
+    pub_only_on_change: false
+  - pub_topic: unknown/629
+    address: 629
+    pub_only_on_change: false
+  - pub_topic: unknown/630
+    address: 630
+    pub_only_on_change: false
+  - pub_topic: unknown/632
+    address: 632
+    pub_only_on_change: false
+  - pub_topic: unknown/633
+    address: 633
+    pub_only_on_change: false
+  - pub_topic: unknown/634
+    address: 634
+    pub_only_on_change: false
+  - pub_topic: unknown/635
+    address: 635
+    pub_only_on_change: false
+  - pub_topic: unknown/636
+    address: 636
+    pub_only_on_change: false
+  - pub_topic: unknown/637
+    address: 637
+    pub_only_on_change: false
+  - pub_topic: unknown/638
+    address: 638
+    pub_only_on_change: false
+  - pub_topic: unknown/639
+    address: 639
+    pub_only_on_change: false
+  - pub_topic: unknown/640
+    address: 640
+    pub_only_on_change: false
+  - pub_topic: unknown/641
+    address: 641
+    pub_only_on_change: false
+  - pub_topic: unknown/642
+    address: 642
+    pub_only_on_change: false
+  - pub_topic: unknown/643
+    address: 643
+    pub_only_on_change: false
+  - pub_topic: unknown/644
+    address: 644
+    pub_only_on_change: false
+  - pub_topic: unknown/645
+    address: 645
+    pub_only_on_change: false
+
+  # - pub_topic: waermepumpe/gesamt/BETRIEBSSTUNDEN_ANFORDERUNGEN
+  #   address: 700
+  #   # description: Betriebsstunden der gesamten Anforderungen
+  #   # type: R
+  #   # unit: h_DE
+  #   pub_only_on_change: false
+  - pub_topic: waermepumpe/gesamt/ELEKTRISCHER_VERBRAUCH_KWH
+    address: 702
+    # description: Gesamt Elektrischerverbrauch
+    scale: 2.7777778E-07
+    # scale: 3.6E+06
+    # type: R
+    # unit: kWh
+    pub_only_on_change: false
+  - pub_topic: waermepumpe/gesamt/ERZEUGTE_WAERMEENERGIE_KWH
+    address: 703
+    # description: Gesamt Erzeugte Wärmeenergie
+    scale: 2.7777778E-07
+    # scale: 3.6E+06
+    # type: R
+    # unit: kWh
+    pub_only_on_change: false
+
+  - pub_topic: waermepumpe/STATUS
+    address: 704
+    # description: Status der Wärmepumpe
+    # type: R
+    # value_map:
+    #   Standby: 0
+    #   Vorlauf: 1
+    #   Heizbetrieb: 2
+    #   Abtaubetrieb: 3
+    #   Kühlbetrieb: 4
+    #   Nachlauf: 5
+    #   Sicherheitsabschaltung: 7
+    #   Störung: 8
+    pub_only_on_change: false
+  - pub_topic: waermepumpe/MESSAGE_ID_OF_THE_FLOW_TEMPERATURESENSOR
     address: 705
     # description: Message ID of the flow temperaturesensor
     # type: R
     # unit: null
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/waermepumpe/temperatur/VORLAUF
+  - pub_topic: waermepumpe/temperatur/VORLAUF
     address: 706
     # description: Aktueller Wärmepumpen Vorlauf
     scale: 0.1
     # type: R
     # unit: °C
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/waermepumpe/temperatur/QUELLEN_EINTRITT
+  - pub_topic: waermepumpe/temperatur/QUELLEN_EINTRITT
     address: 707
     # description: Aktueller Wärmepumpen Quellen Eintritt
     scale: 0.001 # looks wrong
     # type: R
     # unit: °C
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/waermepumpe/temperatur/QUELLEN_AUSTRITT
+  - pub_topic: waermepumpe/temperatur/QUELLEN_AUSTRITT
     address: 708
     # description: Aktueller Wärmepumpen Quellen Austritt
     scale: 0.001
     # type: R
     # unit: °C
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/waermepumpe/temperatur/RUECKLAUF
+  - pub_topic: waermepumpe/temperatur/RUECKLAUF
     address: 709
     # description: Aktueller Wärmepumpen Rücklauf
     scale: 0.1
     # type: R
     # unit: °C
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/waermepumpe/temperatur/KAELTEMITTEL_HEISGAS
+  - pub_topic: waermepumpe/temperatur/KAELTEMITTEL_HEISGAS
     address: 710
     # description: Kältemittel Heisgastemperatur
     scale: 0.1
     # type: R
     # unit: °C
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/waermepumpe/LUEFTER_DREHZAHL
+  - pub_topic: waermepumpe/LUEFTER_DREHZAHL
     address: 711
     # description: WQP_Luft WP_Lüfter Drehzahl/Bei Sole/Wasser die Versorgung der Quellenpumpe (100%=An)
     # type: R
     # unit: '%'
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/waermepumpe/STROMVERSORGUNG_WAERMEERZEUGERPUMPE_PROZENT
+  - pub_topic: waermepumpe/STROMVERSORGUNG_WAERMEERZEUGERPUMPE_PROZENT
     address: 712
     # description: Stromversorgung Wärmeerzeugerpumpe (100%=An)
     # type: R
     # unit: '%'
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/waermepumpe/tandem_wp/STATUS_VERDICHTER_STUFE1
+  - pub_topic: waermepumpe/tandem_wp/STATUS_VERDICHTER_STUFE1
     address: 713
     # description: Bei Tandem WP_Status der Verdichter Stufe 1
     # type: R
     # unit: null
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/waermepumpe/tandem_wp/STATUS_VERDICHTER_STUFE2
+  - pub_topic: waermepumpe/tandem_wp/STATUS_VERDICHTER_STUFE2
     address: 714
     # description: Bei Tandem WP_Status der Verdichter Stufe 2
     # type: R
     # unit: null
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/waermepumpe/sicherheitskette/HOCHDRUCK
+  - pub_topic: waermepumpe/sicherheitskette/HOCHDRUCK
     address: 715
     # description: Sicherheitskette Hochdruck
     # type: R
     # unit: null
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/waermepumpe/sicherheitskette/NIEDERDRUCK
+  - pub_topic: waermepumpe/sicherheitskette/NIEDERDRUCK
     address: 716
     # description: Sicherheitskette Niederdruck
     # type: R
     # unit: null
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/waermepumpe/sicherheitskette/QUELLEN_FEHLER
+  - pub_topic: waermepumpe/sicherheitskette/QUELLEN_FEHLER
     address: 717
     # description: Sicherheitskette Quellenfehler
     # type: R
     # unit: null
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/waermepumpe/sicherheitskette/VERDICHTER_MOTORSCHUTZ
+  - pub_topic: waermepumpe/sicherheitskette/VERDICHTER_MOTORSCHUTZ
     address: 718
     # description: Sicherheitskette Verdichter Motorschutz
     # type: R
     # unit: null
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/waermepumpe/betriebsstunden/VERDICHTER1
+  - pub_topic: waermepumpe/betriebsstunden/VERDICHTER1
     address: 719
     # description: Betriebsstunden Verdichter 1
     # type: R
     # unit: null
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/waermepumpe/betriebsstunden/VERDICHTER 2
+  - pub_topic: waermepumpe/betriebsstunden/VERDICHTER 2
     address: 720
     # description: Betriebsstunden Verdichter 2
     # type: R
     # unit: null
-
-
-
-
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/727
+  - pub_topic: unknown/727
     address: 727
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/728
+  - pub_topic: unknown/728
     address: 728
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/729
+  - pub_topic: unknown/729
     address: 729
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/730
+  - pub_topic: unknown/730
     address: 730
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/731
+  - pub_topic: unknown/731
     address: 731
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/732
+  - pub_topic: unknown/732
     address: 732
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/733
+  - pub_topic: unknown/733
     address: 733
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/734
+  - pub_topic: unknown/734
     address: 734
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/735
+  - pub_topic: unknown/735
     address: 735
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/736
+  - pub_topic: unknown/736
     address: 736
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/737
+  - pub_topic: unknown/737
     address: 737
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/738
+  - pub_topic: unknown/738
     address: 738
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/739
+  - pub_topic: unknown/739
     address: 739
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/740
+  - pub_topic: unknown/740
     address: 740
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/741
+  - pub_topic: unknown/741
     address: 741
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/742
+  - pub_topic: unknown/742
     address: 742
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/743
+  - pub_topic: unknown/743
     address: 743
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/744
+  - pub_topic: unknown/744
     address: 744
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/745
+  - pub_topic: unknown/745
     address: 745
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/752
+  - pub_topic: unknown/752
     address: 752
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/753
+  - pub_topic: unknown/753
     address: 753
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/754
+  - pub_topic: unknown/754
     address: 754
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/755
+  - pub_topic: unknown/755
     address: 755
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/756
+  - pub_topic: unknown/756
     address: 756
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/757
+  - pub_topic: unknown/757
     address: 757
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/758
+  - pub_topic: unknown/758
     address: 758
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/759
+  - pub_topic: unknown/759
     address: 759
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/760
+  - pub_topic: unknown/760
     address: 760
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/761
+  - pub_topic: unknown/761
     address: 761
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/762
+  - pub_topic: unknown/762
     address: 762
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/763
+  - pub_topic: unknown/763
     address: 763
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/764
+  - pub_topic: unknown/764
     address: 764
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/765
+  - pub_topic: unknown/765
     address: 765
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/766
+  - pub_topic: unknown/766
     address: 766
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/767
+  - pub_topic: unknown/767
     address: 767
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/768
+  - pub_topic: unknown/768
     address: 768
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/769
+  - pub_topic: unknown/769
     address: 769
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/770
+  - pub_topic: unknown/770
     address: 770
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/777
+  - pub_topic: unknown/777
     address: 777
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/778
+  - pub_topic: unknown/778
     address: 778
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/779
+  - pub_topic: unknown/779
     address: 779
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/780
+  - pub_topic: unknown/780
     address: 780
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/781
+  - pub_topic: unknown/781
     address: 781
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/782
+  - pub_topic: unknown/782
     address: 782
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/783
+  - pub_topic: unknown/783
     address: 783
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/784
+  - pub_topic: unknown/784
     address: 784
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/785
+  - pub_topic: unknown/785
     address: 785
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/786
+  - pub_topic: unknown/786
     address: 786
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/787
+  - pub_topic: unknown/787
     address: 787
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/788
+  - pub_topic: unknown/788
     address: 788
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/789
+  - pub_topic: unknown/789
     address: 789
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/790
+  - pub_topic: unknown/790
     address: 790
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/791
+  - pub_topic: unknown/791
     address: 791
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/792
+  - pub_topic: unknown/792
     address: 792
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/793
+  - pub_topic: unknown/793
     address: 793
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/794
+  - pub_topic: unknown/794
     address: 794
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/795
+  - pub_topic: unknown/795
     address: 795
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/800
+  - pub_topic: unknown/800
     address: 800
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/801
+  - pub_topic: unknown/801
     address: 801
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/802
+  - pub_topic: unknown/802
     address: 802
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/803
+  - pub_topic: unknown/803
     address: 803
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/804
+  - pub_topic: unknown/804
     address: 804
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/805
+  - pub_topic: unknown/805
     address: 805
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/825
+  - pub_topic: unknown/825
     address: 825
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/826
+  - pub_topic: unknown/826
     address: 826
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/827
+  - pub_topic: unknown/827
     address: 827
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/828
+  - pub_topic: unknown/828
     address: 828
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/829
+  - pub_topic: unknown/829
     address: 829
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/830
+  - pub_topic: unknown/830
     address: 830
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/850
+  - pub_topic: unknown/850
     address: 850
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/851
+  - pub_topic: unknown/851
     address: 851
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/852
+  - pub_topic: unknown/852
     address: 852
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/853
+  - pub_topic: unknown/853
     address: 853
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/854
+  - pub_topic: unknown/854
     address: 854
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/855
+  - pub_topic: unknown/855
     address: 855
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/875
+  - pub_topic: unknown/875
     address: 875
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/876
+  - pub_topic: unknown/876
     address: 876
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/877
+  - pub_topic: unknown/877
     address: 877
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/878
+  - pub_topic: unknown/878
     address: 878
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/879
+  - pub_topic: unknown/879
     address: 879
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/880
+  - pub_topic: unknown/880
     address: 880
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1000
+  - pub_topic: unknown/1000
     address: 1000
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1001
+  - pub_topic: unknown/1001
     address: 1001
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1002
+  - pub_topic: unknown/1002
     address: 1002
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1003
+  - pub_topic: unknown/1003
     address: 1003
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1004
+  - pub_topic: unknown/1004
     address: 1004
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1005
+  - pub_topic: unknown/1005
     address: 1005
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1006
+  - pub_topic: unknown/1006
     address: 1006
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1007
+  - pub_topic: unknown/1007
     address: 1007
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1008
+  - pub_topic: unknown/1008
     address: 1008
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1009
+  - pub_topic: unknown/1009
     address: 1009
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1010
+  - pub_topic: unknown/1010
     address: 1010
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1011
+  - pub_topic: unknown/1011
     address: 1011
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1012
+  - pub_topic: unknown/1012
     address: 1012
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1013
+  - pub_topic: unknown/1013
     address: 1013
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1100
+  - pub_topic: unknown/1100
     address: 1100
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1101
+  - pub_topic: unknown/1101
     address: 1101
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1102
+  - pub_topic: unknown/1102
     address: 1102
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1450
+  - pub_topic: unknown/1450
     address: 1450
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1451
+  - pub_topic: unknown/1451
     address: 1451
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1452
+  - pub_topic: unknown/1452
     address: 1452
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1453
+  - pub_topic: unknown/1453
     address: 1453
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1454
+  - pub_topic: unknown/1454
     address: 1454
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1455
+  - pub_topic: unknown/1455
     address: 1455
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1456
+  - pub_topic: unknown/1456
     address: 1456
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1457
+  - pub_topic: unknown/1457
     address: 1457
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1458
+  - pub_topic: unknown/1458
     address: 1458
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1459
+  - pub_topic: unknown/1459
     address: 1459
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1500
+  - pub_topic: unknown/1500
     address: 1500
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1501
+  - pub_topic: unknown/1501
     address: 1501
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1502
+  - pub_topic: unknown/1502
     address: 1502
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1503
+  - pub_topic: unknown/1503
     address: 1503
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1504
+  - pub_topic: unknown/1504
     address: 1504
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1505
+  - pub_topic: unknown/1505
     address: 1505
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1506
+  - pub_topic: unknown/1506
     address: 1506
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1507
+  - pub_topic: unknown/1507
     address: 1507
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1508
+  - pub_topic: unknown/1508
     address: 1508
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1509
+  - pub_topic: unknown/1509
     address: 1509
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1510
+  - pub_topic: unknown/1510
     address: 1510
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1511
+  - pub_topic: unknown/1511
     address: 1511
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1512
+  - pub_topic: unknown/1512
     address: 1512
     pub_only_on_change: false
-  - pub_topic:  bartl_wp/unknown/1513
+  - pub_topic: unknown/1513
     address: 1513
     pub_only_on_change: false

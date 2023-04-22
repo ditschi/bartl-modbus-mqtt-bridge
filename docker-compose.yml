@@ -10,50 +10,28 @@ services:
       --username "$MQTT_SERVER_USER"
       --password "$MQTT_SERVER_PASSWORD"
       --config /modbus4mqtt/config.yml
+      --mqtt_topic_prefix bartl_wp
     restart: unless-stopped
     volumes:
       - ./config/modbus4mqtt/bartl_full.yml:/modbus4mqtt/config.yml
-      #- ./config/modbus4mqtt/Bartl-WP.yml:/modbus4mqtt/config.yml
-    # links:
-    #   - mosquitto
     depends_on:
       - mosquitto
 
   mosquitto:
     image: eclipse-mosquitto
-    container_name: mosquitto-test
-    hostname: mosquitto-test
+    hostname: mosquitto-bartl
     restart: always
     volumes:
       - ./config/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
       - ./data/mosquitto:/mosquitto/data
     ports:
-      - "1883:1883"
-      - "9001:9001"
-
-
-  influxdb:
-    container_name: influxdb-test
-    # environment:
-    #   - INFLUXDB_DB=$INFLUXDB_DB
-    #   - INFLUXDB_ADMIN_USER=$INFLUXDB_ADMIN_USER
-    #   - INFLUXDB_ADMIN_PASSWORD=$INFLUXDB_ADMIN_PASSWORD
-    image: influxdb:latest
-    ports:
-      - "8086:8086"
-    env_file:
-      - .env
-    restart: unless-stopped
-    volumes:
-      - ./data/influxdb:/var/lib/influxdb
-      - /etc/localtime:/etc/localtime:ro
+      - $MQTT_SERVER_PORT:1883
+      - 9002:9001
 
   telegraf:
     image: telegraf
     hostname: telegraf-mqtt-test
     container_name: telegraf-mqtt-test
-    links:
-      - influxdb
     volumes:
        # Mount for telegraf configuration
       - ./config/telegraf/:/etc/telegraf/
@@ -61,10 +39,37 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     env_file:
       - .env
-    environment:
-      - DOCKER_INFLUXDB_INIT_ORG=$DOCKER_INFLUXDB_INIT_ORG
-      - DOCKER_INFLUXDB_INIT_BUCKET=$DOCKER_INFLUXDB_INIT_BUCKET
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN
     depends_on:
-      - influxdb
       - mosquitto
+      - influxdb
+
+
+  influxdb:
+    container_name: influxdb-wp
+    image: influxdb:latest
+    # ports:
+    #   - "8087:8086"
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - traefik
+    volumes:
+      - ./data/influxdb2:/var/lib/influxdb2
+      # Mount for influxdb configuration
+      - ./data/influxdb2-config/:/etc/influxdb2/
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik
+      - traefik.http.routers.bartlwp-secure.entrypoints=websecure
+      - traefik.http.routers.bartlwp-secure.rule=Host(`${TRAEFIK_SUBDOMAIN}.ditschers.de`, `${TRAEFIK_SUBDOMAIN}.ditscher.me`)
+      - traefik.http.routers.bartlwp-secure.tls=true
+      - traefik.http.routers.bartlwp-secure.tls.certresolver=letsencrypt
+      - traefik.http.routers.bartlwp-secure.middlewares=secure-headers@file
+      - traefik.http.routers.bartlwp-secure.service=bartlwp
+      - traefik.http.services.bartlwp.loadbalancer.server.port=8086
+
+
+networks:
+  traefik:
+    external: true
