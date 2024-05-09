@@ -2,8 +2,7 @@ version: "3.3"
 services:
   modbus4mqtt:
     image: tjhowse/modbus4mqtt
-    container_name: modbus4mqtt
-    network_mode: host
+    container_name: modbus4mqtt-bartlwp
     command: >
       --hostname "$MQTT_SERVER_ADDRESS"
       --port "$MQTT_SERVER_PORT"
@@ -13,25 +12,12 @@ services:
       --mqtt_topic_prefix bartl_wp
     restart: unless-stopped
     volumes:
-      - ./config/modbus4mqtt/bartl_full.yml:/modbus4mqtt/config.yml
-    depends_on:
-      - mosquitto
-
-  mosquitto:
-    image: eclipse-mosquitto
-    hostname: mosquitto-bartl
-    restart: always
-    volumes:
-      - ./config/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
-      - ./data/mosquitto:/mosquitto/data
-    ports:
-      - $MQTT_SERVER_PORT:1883
-      - 9002:9001
+      - ./config/modbus4mqtt/Bartl-WP.yml:/modbus4mqtt/config.yml
 
   telegraf:
     image: telegraf
-    hostname: telegraf-mqtt-test
-    container_name: telegraf-mqtt-test
+    hostname: telegraf-mqtt-bartlwp
+    container_name: telegraf-mqtt-bartlwp
     volumes:
        # Mount for telegraf configuration
       - ./config/telegraf/:/etc/telegraf/
@@ -40,36 +26,5 @@ services:
     env_file:
       - .env
     depends_on:
-      - mosquitto
-      - influxdb
+      - modbus4mqtt
 
-
-  influxdb:
-    container_name: influxdb-wp
-    image: influxdb:latest
-    # ports:
-    #   - "8087:8086"
-    env_file:
-      - .env
-    restart: unless-stopped
-    networks:
-      - traefik
-    volumes:
-      - ./data/influxdb2:/var/lib/influxdb2
-      # Mount for influxdb configuration
-      - ./data/influxdb2-config/:/etc/influxdb2/
-    labels:
-      - traefik.enable=true
-      - traefik.docker.network=traefik
-      - traefik.http.routers.bartlwp-secure.entrypoints=websecure
-      - traefik.http.routers.bartlwp-secure.rule=Host(`${TRAEFIK_SUBDOMAIN}.ditschers.de`, `${TRAEFIK_SUBDOMAIN}.ditscher.me`)
-      - traefik.http.routers.bartlwp-secure.tls=true
-      - traefik.http.routers.bartlwp-secure.tls.certresolver=letsencrypt
-      - traefik.http.routers.bartlwp-secure.middlewares=secure-headers@file
-      - traefik.http.routers.bartlwp-secure.service=bartlwp
-      - traefik.http.services.bartlwp.loadbalancer.server.port=8086
-
-
-networks:
-  traefik:
-    external: true

@@ -1,48 +1,48 @@
 ip: 192.168.1.211
 port: 502
-update_rate: 5
+update_rate: 10
 address_offset: 0
 scan_batching: 1
 registers:
-  - pub_topic:  heizkreis/raumtemperatur/AKTUELL
+  - pub_topic: heizkreis/raumtemperatur/aktuell
     address: 1
     # description : AKTUELLE_RAUMTEMPERATUR
     scale: 0.1
     # unit: °C
-  - pub_topic:  heizkreis/raumtemperatur/AKTUELLER_SOLLWERT_INKLUSIVE_OFFSET
+  - pub_topic: heizkreis/raumtemperatur/aktueller_sollwert_inklusive_offset
     address: 2
     # description : AKTUELLER_RAUMSOLLWERT_INKLUSIVE_RAUMSOLLWERT_OFFSET
     scale: 0.1
     # unit: °C
-  - pub_topic:  heizkreis/raumtemperatur/AKTUELL_GUELTIGE
+  - pub_topic: heizkreis/raumtemperatur/aktuell_gueltige
     address: 3
     # description : AKTUELL_GUELTIGE_RAUMTEMPERATUR
     scale: 0.1
     # type: R
     # unit: °C
-  - pub_topic:  heizkreis/raumtemperatur/heizbetrieb/NORMAL
-    set_topic:  heizkreis/raumtemperatur/heizbetrieb/NORMAL/set
+  - pub_topic: heizkreis/raumtemperatur/heizbetrieb/normal
+    set_topic: heizkreis/raumtemperatur/heizbetrieb/normal/set
     address: 4
     # description : NORMAL_RAUMTEMPERATUR_HEIZBETRIEB
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  heizkreis/raumtemperatur/heizbetrieb/NACHTABSENKUNG
-    set_topic:  heizkreis/raumtemperatur/heizbetrieb/NACHTABSENKUNG/set
+  - pub_topic: heizkreis/raumtemperatur/heizbetrieb/nachtabsenkung
+    set_topic: heizkreis/raumtemperatur/heizbetrieb/nachtabsenkung/set
     address: 5
     # description : NACHTABSENK_RAUMTEMPERATUR_HEIZBETRIEB
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  heizkreis/raumtemperatur/OFFSET
-    set_topic:  heizkreis/raumtemperatur/OFFSET/set
+  - pub_topic: heizkreis/raumtemperatur/offset
+    set_topic: heizkreis/raumtemperatur/offset/set
     address: 6
     # description : OFFSET_DER_AKTUELL_GUELTIGEN_RAUMTEMPERATUR
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  heizkreis/BETRIEBSART
-    set_topic:  heizkreis/BETRIEBSART/set
+  - pub_topic: heizkreis/betriebsart
+    set_topic: heizkreis/betriebsart/set
     address: 7
     # description : BETRIEBSART_HEIZKREIS
     # type: R/W
@@ -53,63 +53,63 @@ registers:
       Nacht: 3
       Urlaub: 4
       Party: 5
-  - pub_topic:  heizkreis/raumtemperatur/kuehlbetrieb/NORMAL
-    set_topic:  heizkreis/raumtemperatur/kuehlbetrieb/NORMAL/set
+  - pub_topic: heizkreis/raumtemperatur/kuehlbetrieb/normal
+    set_topic: heizkreis/raumtemperatur/kuehlbetrieb/normal/set
     address: 8
     # description : NORMAL_RAUMTEMPERATUR_KUEHLBETRIEB
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  heizkreis/raumtemperatur/kuehlbetrieb/NACHTABSENKUNG
-    set_topic:  heizkreis/raumtemperatur/kuehlbetrieb/NACHTABSENKUNG/set
+  - pub_topic: heizkreis/raumtemperatur/kuehlbetrieb/nachtabsenkung
+    set_topic: heizkreis/raumtemperatur/kuehlbetrieb/nachtabsenkung/set
     address: 9
     # description : NACHTABSENK_RAUMTEMPERATUR_KUEHLBETRIEB
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  heizkreis/AKTUELLE_RAUMFEUCHTE_PROZENT
+  - pub_topic: heizkreis/aktuelle_raumfeuchte_prozent
     address: 10
     # desc_PROZENTription : AKTUELLE_RAUMFEUCHTE
     # type: R
     # unit: '%'
-  - pub_topic:  heizkreis/betriebsmodus/KUEHLEN_BEI_EXTERNER_ANSTEUERUNG
-    set_topic:  heizkreis/betriebsmodus/KUEHLEN_BEI_EXTERNER_ANSTEUERUNG/set
+  - pub_topic: heizkreis/betriebsmodus/kuehlen_bei_externer_ansteuerung
+    set_topic: heizkreis/betriebsmodus/kuehlen_bei_externer_ansteuerung/set
     address: 11
     # description : BETRIEBSMODUS_KUEHLEN_BEI_EXTERNER_ANSTEUERUNG
     # type: R/W
     # unit: null
-  - pub_topic:  heizkreis/betriebsmodus/HEIZEN_BEI_EXTERNER_ANSTEUERUNG
-    set_topic:  heizkreis/betriebsmodus/HEIZEN_BEI_EXTERNER_ANSTEUERUNG/set
+  - pub_topic: heizkreis/betriebsmodus/heizen_bei_externer_ansteuerung
+    set_topic: heizkreis/betriebsmodus/heizen_bei_externer_ansteuerung/set
     address: 12
     # description : BETRIEBSMODUS_HEIZEN_BEI_EXTERNER_ANSTEUERUNG
     # type: R/W
     # unit: null
-  - pub_topic:  heizkreis/temperatur/vorlauf/SOLLWERT_BEI_EXTERNER_ANSTEUERUNG
-    set_topic:  heizkreis/temperatur/vorlauf/SOLLWERT_BEI_EXTERNER_ANSTEUERUNG/set
+  - pub_topic: heizkreis/temperatur/vorlauf/sollwert_bei_externer_ansteuerung
+    set_topic: heizkreis/temperatur/vorlauf/sollwert_bei_externer_ansteuerung/set
     address: 13
     # description : VORLAUFSOLLWERT_BEI_EXTERNER_ANSTEUERUNG
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  heizkreis/temperatur/vorlauf/ISTWERT
+  - pub_topic: heizkreis/temperatur/vorlauf/istwert
     address: 14
     # description : HEIZKREIS_VORLAUF_ISTWERT
     scale: 0.1
     # type: R
     # unit: °C
-  - pub_topic:  heizkreis/PUMPE
-    set_topic:  heizkreis/PUMPE/set
+  - pub_topic: heizkreis/pumpe
+    set_topic: heizkreis/pumpe/set
     address: 15
     # description : HEIZKREISPUMPE
     # type: R
     # unit: null
-  - pub_topic:  heizkreis/temperatur/ruecklauf/ISTWERT
+  - pub_topic: heizkreis/temperatur/ruecklauf/istwert
     address: 16
     # description : HEIZKREIS_RUECKLAUF_ISTWERT
     scale: 0.1
     # type: R
     # unit: °C
-  - pub_topic:  heizkreis/AKTUELLE_ANFORDERUNG1
+  - pub_topic: heizkreis/aktuelle_anforderung1
     address: 17
     # description : AKTUELLE_ANFORDERUNG
     # type: R
@@ -118,7 +118,7 @@ registers:
       AKTIV: 1
       Temp-/Prio AUS: 3
       AT_AUS: 5
-  - pub_topic:  heizkreis/AKTUELLE_ANFORDERUNG2
+  - pub_topic: heizkreis/aktuelle_anforderung2
     address: 18
     # description : AKTUELLE_ANFORDERUNG
     # type: R
@@ -127,74 +127,74 @@ registers:
       AKTIV: 1
       Temp-/Prio AUS: 3
       AT_AUS: 5
-  - pub_topic:  heizkreis/temperatur/AUSSEN_GEFILTERT
+  - pub_topic: heizkreis/temperatur/aussen_gefiltert
     address: 19
     # description : GEFILTERTE_AUSSENTMPERATUR
     scale: 0.1
     # type: R
     # unit: °C
-  - pub_topic:  heizkreis/temperatur/heizgrenze/TAG_BETRIEB
-    set_topic:  heizkreis/temperatur/heizgrenze/TAG_BETRIEB/set
+  - pub_topic: heizkreis/temperatur/heizgrenze/tag_betrieb
+    set_topic: heizkreis/temperatur/heizgrenze/tag_betrieb/set
     address: 20
     # description : HEIZGRENZE_TAG_BETRIEB
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  heizkreis/temperatur/heizgrenze/NACHT_BETRIEB
-    set_topic:  heizkreis/temperatur/heizgrenze/NACHT_BETRIEB/set
+  - pub_topic: heizkreis/temperatur/heizgrenze/nacht_betrieb
+    set_topic: heizkreis/temperatur/heizgrenze/nacht_betrieb/set
     address: 21
     # description : HEIZGRENZE_NACHT_BETRIEB
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  heizkreis/temperatur/kuehlgrenze/TAG_BETRIEB
-    set_topic:  heizkreis/temperatur/kuehlgrenze/TAG_BETRIEB/set
+  - pub_topic: heizkreis/temperatur/kuehlgrenze/tag_betrieb
+    set_topic: heizkreis/temperatur/kuehlgrenze/tag_betrieb/set
     address: 22
     # description : KUEHLGRENZE_TAG_BETRIEB
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  heizkreis/temperatur/kuehlgrenze/NACHT_BETRIEB
-    set_topic:  heizkreis/temperatur/kuehlgrenze/NACHT_BETRIEB/set
+  - pub_topic: heizkreis/temperatur/kuehlgrenze/nacht_betrieb
+    set_topic: heizkreis/temperatur/kuehlgrenze/nacht_betrieb/set
     address: 23
     # description : KUEHLGRENZE_NACHT_BETRIEB
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  heizkreis/temperatur/vorlauf/MAXIMAL
-    set_topic:  heizkreis/temperatur/vorlauf/MAXIMAL/set
+  - pub_topic: heizkreis/temperatur/vorlauf/maximal
+    set_topic: heizkreis/temperatur/vorlauf/maximal/set
     address: 24
     # description : VORLAUF_MAXIMAL
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  heizkreis/temperatur/vorlauf/MINIMAL
-    set_topic:  heizkreis/temperatur/vorlauf/MINIMAL/set
+  - pub_topic: heizkreis/temperatur/vorlauf/minimal
+    set_topic: heizkreis/temperatur/vorlauf/minimal/set
     address: 25
     # description : VORLAUF_MINIMAL
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  heizkreis/sollspreizung_vl_rl/AKTUELL
+  - pub_topic: heizkreis/sollspreizung_vl_rl/aktuell
     address: 26
     # description : AKTUELL_GUELTIGE_VL_RL_SOLLSPREIZUNG
     scale: 0.1
     # type: R
     # unit: null
-  - pub_topic:  heizkreis/SOLLDREHZAHL_PUMPE_PERCENT
+  - pub_topic: heizkreis/solldrehzahl_pumpe_percent
     address: 27
     # description : PUMPEN_SOLLDREHZAHL
     # type: R
     # unit: '%'
-  - pub_topic:  heizkreis/sollspreizung_vl_rl/HEIZBETRIEB
-    set_topic:  heizkreis/sollspreizung_vl_rl/HEIZBETRIEB/set
+  - pub_topic: heizkreis/sollspreizung_vl_rl/heizbetrieb
+    set_topic: heizkreis/sollspreizung_vl_rl/heizbetrieb/set
     address: 28
     # description : SOLLSPREIZUNG_VL_RL_HEIZBETRIEB
     scale: 0.1
     # type: R/W
     # unit: null
-  - pub_topic:  heizkreis/sollspreizung_vl_rl/KUEHLBETRIEB
-    set_topic:  heizkreis/sollspreizung_vl_rl/KUEHLBETRIEB/set
+  - pub_topic: heizkreis/sollspreizung_vl_rl/kuehlbetrieb
+    set_topic: heizkreis/sollspreizung_vl_rl/kuehlbetrieb/set
     address: 29
     # description : SOLLSPREIZUNG_VL_RL_KUEHLBETRIEB
     scale: 0.1
@@ -203,21 +203,21 @@ registers:
 
 
 
-  - pub_topic:  warmwasser/temperatur/OBEN
+  - pub_topic: warmwasser/temperatur/oben
     address: 401
     # description: Aktuelle Warmwasser Temperatur Oben
     scale: 0.1
     # type: R
     # unit: °C
-  - pub_topic:  warmwasser/temperatur/STUETZTEMPERATUR
-    set_topic:  warmwasser/temperatur/STUETZTEMPERATUR/set
+  - pub_topic: warmwasser/temperatur/stuetztemperatur
+    set_topic: warmwasser/temperatur/stuetztemperatur/set
     address: 402
     # description: Warmwasser Stütztemperatur
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  warmwasser/BETRIEBSART
-    set_topic:  warmwasser/BETRIEBSART/set
+  - pub_topic: warmwasser/betriebsart
+    set_topic: warmwasser/betriebsart/set
     address: 403
     # description: Betriebsart Warmwasser
     # type: R/W
@@ -226,82 +226,82 @@ registers:
       Auto: 1
       Ein: 2
       Einmal Laden: 3
-  - pub_topic:  warmwasser/temperatur/SOLLWERT
-    set_topic:  warmwasser/temperatur/SOLLWERT/set
+  - pub_topic: warmwasser/temperatur/sollwert
+    set_topic: warmwasser/temperatur/sollwert/set
     address: 404
     # description: Warmwasser Sollwert
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  warmwasser/temperatur/SOLLWERT_BEI_PV_NUTZUNG
-    set_topic:  warmwasser/temperatur/SOLLWERT_BEI_PV_NUTZUNG/set
+  - pub_topic: warmwasser/temperatur/sollwert_bei_pv_nutzung
+    set_topic: warmwasser/temperatur/sollwert_bei_pv_nutzung/set
     address: 405
     # description: Warmwasser Sollwert bei PV_Nutzung
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  warmwasser/PV_UEBERSCHUSSNUTZUNG
-    set_topic:  warmwasser/PV_UEBERSCHUSSNUTZUNG/set
+  - pub_topic: warmwasser/pv_ueberschussnutzung
+    set_topic: warmwasser/pv_ueberschussnutzung/set
     address: 406
     # description: PV UEberschussnutzung
     # type: R/W
     # unit: null
-  - pub_topic:  warmwasser/temperatur/UNTEN
+  - pub_topic: warmwasser/temperatur/unten
     address: 407
     # description: Aktuelle Warmwasser Temperatur Unten
     scale: 0.1
     # type: R
     # unit: °C
-  - pub_topic:  warmwasser/ZIRKULATIONSPUMPE
+  - pub_topic: warmwasser/zirkulationspumpe
     address: 408
     # description: Zirkulationspumpe
     # type: R
     # unit: null
-  - pub_topic:  warmwasser/temperatur/ZIRKULATIONSTEMPERATUR
+  - pub_topic: warmwasser/temperatur/zirkulationstemperatur
     address: 409
     # description: Zirkulationstemperatur
     scale: 0.1
     # type: R
     # unit: °C
-  - pub_topic:  warmwasser/frischwasser/TEMPERATUR_SOLLWERT
-    set_topic:  warmwasser/frischwasser/TEMPERATUR_SOLLWERT/set
+  - pub_topic: warmwasser/frischwasser/temperatur_sollwert
+    set_topic: warmwasser/frischwasser/temperatur_sollwert/set
     address: 410
     # description: Frischwasser Sollwert
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  warmwasser/frischwasser/TEMPERATUR_ISTWERT
+  - pub_topic: warmwasser/frischwasser/temperatur_istwert
     address: 411
     # description: Frischwasser Istwert
     scale: 0.1
     # type: R
     # unit: °C
-  - pub_topic:  warmwasser/frischwasser/STROEMUNGSSCHALTER
+  - pub_topic: warmwasser/frischwasser/stroemungsschalter
     address: 412
     # description: Strömungsschalter Frischwasser
     # type: R
     # unit: null
-  - pub_topic:  warmwasser/STROMVERSORGUNG_PUMPE
+  - pub_topic: warmwasser/stromversorgung_pumpe
     address: 413
     # description: Stromversorgung Pumpe
     scale: 0.1
     # type: R
     # unit: '%'
-  # - pub_topic:  warmwasser/DREHZALSOLLWERT_FRISCHWASSER
+  # - pub_topic: warmwasser/drehzalsollwert_frischwasser
   #   address: 414
   #   # description: Drehzalsollwert Frischwasser
   # #   scale: 10
   #   # type: R
   #   # unit: n/min
-  # - pub_topic:  warmwasser/frischwasseransteuerung/MINIMALE_DREHZAHL
-  #   set_topic:  warmwasser/frischwasseransteuerung/MINIMALE_DREHZAHL/set
+  # - pub_topic: warmwasser/frischwasseransteuerung/minimale_drehzahl
+  #   set_topic: warmwasser/frischwasseransteuerung/minimale_drehzahl/set
   #   address: 415
   #   # description: Minimale Drehzahl Frischwasseransteuerung
   # #   scale: 10
   #   # type: R/W
   #   # unit: n/min
-  # - pub_topic:  warmwasser/frischwasseransteuerung/MAXIMALE_DREHZAHL
-  #   set_topic:  warmwasser/frischwasseransteuerung/MAXIMALE_DREHZAHL/set
+  # - pub_topic: warmwasser/frischwasseransteuerung/maximale_drehzahl
+  #   set_topic: warmwasser/frischwasseransteuerung/maximale_drehzahl/set
   #   address: 416
   #   # description: Maximale Drehzahl Frischwasseransteuerung
   # #   scale: 10
@@ -310,127 +310,127 @@ registers:
 
 
 
-  - pub_topic:  puffer/istwert/TEMTEMPERATUR_OBEN
+  - pub_topic: puffer/istwert/temtemperatur_oben
     address: 601
     # description: Istwert Puffer Oben
     scale: 0.1
     # type: R
     # unit: °C
-  - pub_topic:  puffer/istwert/TEMTEMPERATUR_UNTEN
+  - pub_topic: puffer/istwert/temtemperatur_unten
     address: 603
     # description: Istwert Puffer Unten
     scale: 0.1
     # type: R
     # unit: °C
-  - pub_topic:  puffer/heizen/STUETZTEMPERATUR
-    set_topic:   puffer/heizen/STUETZTEMPERATUR/set
+  - pub_topic: puffer/heizen/stuetztemperatur
+    set_topic: puffer/heizen/stuetztemperatur/set
     address: 604
     # description: Stütztemperatur (Heizen) solange sich die Außentemperatur unterhalb der im Eingestellten Heizgrenze befindet
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  puffer/heizen/MINIMALER_SOLLWERT_TEMTEMPERATUR
-    set_topic:   puffer/heizen/MINIMALER_SOLLWERT_TEMPERATUR/set
+  - pub_topic: puffer/heizen/minimaler_sollwert_temtemperatur
+    set_topic: puffer/heizen/minimaler_sollwert_temperatur/set
     address: 605
     # description: Minimaler Sollwert Puffer (Heizen)
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  puffer/kuehlen/MAXIMALE_TEMPERATUR
-    set_topic:   puffer/kuehlen/MAXIMALE_TEMPERATUR/set
+  - pub_topic: puffer/kuehlen/maximale_temperatur
+    set_topic: puffer/kuehlen/maximale_temperatur/set
     address: 606
     # description: Maximale Puffertemperatur (Kühlen) solange sich die Außentemperatur über der im Puffer Eingestellten Kühlgrenze befindet
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  puffer/SCHALTHYSTERESE_HEIZBETRIEB
-    set_topic:   puffer/SCHALTHYSTERESE_HEIZBETRIEB/set
+  - pub_topic: puffer/schalthysterese_heizbetrieb
+    set_topic: puffer/schalthysterese_heizbetrieb/set
     address: 607
     # description: Schalthysterese Heizbetrieb
     scale: 0.1
     # type: R/W
     # unit: null
-  - pub_topic:  puffer/SCHALTHYSTERESE_KUEHLBETRIEB
-    set_topic:   puffer/SCHALTHYSTERESE_KUEHLBETRIEB/set
+  - pub_topic: puffer/schalthysterese_kuehlbetrieb
+    set_topic: puffer/schalthysterese_kuehlbetrieb/set
     address: 608
     # description: Schalthysterese Kühlbetrieb
     scale: 0.1
     # type: R/W
     # unit: null
-  - pub_topic:  puffer/ueberschussenergie/WEITERGABE
-    set_topic:   puffer/ueberschussenergie/WEITERGABE/set
+  - pub_topic: puffer/ueberschussenergie/weitergabe
+    set_topic: puffer/ueberschussenergie/weitergabe/set
     address: 609
     # description: UEberschussenergie Weitergabe
     # type: R/W
     # unit: null
-  - pub_topic:  puffer/ueberschussenergie/verwendung/SOLLWERT_HEIZEN
-    set_topic:   puffer/ueberschussenergie/verwendung/SOLLWERT_HEIZEN/set
+  - pub_topic: puffer/ueberschussenergie/verwendung/sollwert_heizen
+    set_topic: puffer/ueberschussenergie/verwendung/sollwert_heizen/set
     address: 610
     # description: UEberschussenergie Verwendung Sollwert Heizen
     scale: 0.1
     # type: R/W
     # unit: null
-  - pub_topic:  puffer/ueberschussenergie/verwendung/SOLLWERT_KUEHLEN
-    set_topic:   puffer/ueberschussenergie/verwendung/SOLLWERT_KUEHLEN/set
+  - pub_topic: puffer/ueberschussenergie/verwendung/sollwert_kuehlen
+    set_topic: puffer/ueberschussenergie/verwendung/sollwert_kuehlen/set
     address: 611
     # description: UEberschussenergie Verwendung Sollwert Kühlen
     scale: 0.1
     # type: R/W
     # unit: null
-  - pub_topic:  puffer/ueberschussenergie/VERWENDUNG
-    set_topic:   puffer/ueberschussenergie/VERWENDUNG/set
+  - pub_topic: puffer/ueberschussenergie/verwendung
+    set_topic: puffer/ueberschussenergie/verwendung/set
     address: 612
     # description: UEberschussenergie Verwendung
     # type: R/W
     # unit: null
-  - pub_topic:  puffer/HEIZGRENZE_STUETZTEMPERATUR
-    set_topic:   puffer/HEIZGRENZE_STUETZTEMPERATUR/set
+  - pub_topic: puffer/heizgrenze_stuetztemperatur
+    set_topic: puffer/heizgrenze_stuetztemperatur/set
     address: 613
     # description: Heizgrenze Stütztemperatur Puffer
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  puffer/HYSTERESE_HEIZGRENZE
-    set_topic:   puffer/HYSTERESE_HEIZGRENZE/set
+  - pub_topic: puffer/hysterese_heizgrenze
+    set_topic: puffer/hysterese_heizgrenze/set
     address: 614
     # description: Hysterese Heizgrenze
     scale: 0.1
     # type: R/W
     # unit: null
-  - pub_topic:  puffer/KUEHLGRENZE_STUETZTEMPERATUR
-    set_topic:   puffer/KUEHLGRENZE_STUETZTEMPERATUR/set
+  - pub_topic: puffer/kuehlgrenze_stuetztemperatur
+    set_topic: puffer/kuehlgrenze_stuetztemperatur/set
     address: 615
     # description: Kühlgrenze Stütztemperatur Puffer
     scale: 0.1
     # type: R/W
     # unit: °C
-  - pub_topic:  puffer/HYSTERESE_KUEHLGRENZEGRENZE
-    set_topic:   puffer/HYSTERESE_KUEHLGRENZEGRENZE/set
+  - pub_topic: puffer/hysterese_kuehlgrenzegrenze
+    set_topic: puffer/hysterese_kuehlgrenzegrenze/set
     address: 616
     # description: Hysterese Kühlgrenzegrenze
     scale: 0.1
     # type: R/W
     # unit: null
-  - pub_topic:  puffer/AKTUELLER_TEMPERATUR_SOLLWERT
+  - pub_topic: puffer/aktueller_temperatur_sollwert
     address: 617
     # description: Aktueller Puffersollwert
     scale: 0.1
     # type: R
     # unit: °C
-  - pub_topic:  puffer/HEIZANFORDERUNG
-    set_topic:   puffer/HEIZANFORDERUNG/set
+  - pub_topic: puffer/heizanforderung
+    set_topic: puffer/heizanforderung/set
     address: 618
     # description: Heizanforderung
     # type: R
     # unit: null
-  - pub_topic:  puffer/KUEHLANFORDERUNG
-    set_topic:   puffer/KUEHLANFORDERUNG/set
+  - pub_topic: puffer/kuehlanforderung
+    set_topic: puffer/kuehlanforderung/set
     address: 619
     # description: Kühlanforderung
     # type: R
     # unit: null
-  - pub_topic:  puffer/UEBERSCHUSSNUTZUNG
-    set_topic:   puffer/UEBERSCHUSSNUTZUNG/set
+  - pub_topic: puffer/ueberschussnutzung
+    set_topic: puffer/ueberschussnutzung/set
     address: 620
     # description: UEberschussnutzung
     # type: R
@@ -441,27 +441,27 @@ registers:
 
 
 
-  # - pub_topic:  waermepumpe/gesamt/BETRIEBSSTUNDEN_ANFORDERUNGEN
+  # - pub_topic: waermepumpe/gesamt/betriebsstunden_anforderungen
   #   address: 700
   #   # description: Betriebsstunden der gesamten Anforderungen
   # #   # type: R
   #   # unit: h_DE
-  - pub_topic:  waermepumpe/gesamt/ELEKTRISCHER_VERBRAUCH_KWH
+  - pub_topic: waermepumpe/gesamt/elektrischer_verbrauch_kwh
     address: 702
     # description: Gesamt Elektrischerverbrauch
     scale: 2.7777778E-07
     # scale: 3.6E+06
     # type: R
     # unit: kWh
-  - pub_topic:  waermepumpe/gesamt/ERZEUGTE_WAERMEENERGIE_KWH
+  - pub_topic: waermepumpe/gesamt/erzeugte_waermeenergie_kwh
     address: 703
     # description: Gesamt Erzeugte Wärmeenergie
     scale: 2.7777778E-07
     # scale: 3.6E+06
     # type: R
     # unit: kWh
-  - pub_topic:  waermepumpe/STATUS
-    set_topic:   waermepumpe/STATUS/set
+  - pub_topic: waermepumpe/status
+    set_topic: waermepumpe/status/set
     address: 704
     # description: Status der Wärmepumpe
     # type: R
@@ -474,88 +474,177 @@ registers:
       Nachlauf: 5
       Sicherheitsabschaltung: 7
       Störung: 8
-  - pub_topic:  waermepumpe/MESSAGE_ID_OF_THE_FLOW_TEMPERATURESENSOR
+  - pub_topic: waermepumpe/message_id_of_the_flow_temperaturesensor
     address: 705
     # description: Message ID of the flow temperaturesensor
     # type: R
     # unit: null
-  - pub_topic:  waermepumpe/temperatur/VORLAUF
+  - pub_topic: waermepumpe/temperatur/vorlauf
     address: 706
     # description: Aktueller Wärmepumpen Vorlauf
     scale: 0.1
     # type: R
     # unit: °C
-  - pub_topic:  waermepumpe/temperatur/QUELLEN_EINTRITT
+  - pub_topic: waermepumpe/temperatur/quellen_eintritt
     address: 707
     # description: Aktueller Wärmepumpen Quellen Eintritt
     scale: 0.001 # looks wrong
     # type: R
     # unit: °C
-  - pub_topic:  waermepumpe/temperatur/QUELLEN_AUSTRITT
+  - pub_topic: waermepumpe/temperatur/quellen_austritt
     address: 708
     # description: Aktueller Wärmepumpen Quellen Austritt
     scale: 0.001
     # type: R
     # unit: °C
-  - pub_topic:  waermepumpe/temperatur/RUECKLAUF
+  - pub_topic: waermepumpe/temperatur/ruecklauf
     address: 709
     # description: Aktueller Wärmepumpen Rücklauf
     scale: 0.1
     # type: R
     # unit: °C
-  - pub_topic:  waermepumpe/temperatur/KAELTEMITTEL_HEISGAS
+  - pub_topic: waermepumpe/temperatur/kaeltemittel_heisgas
     address: 710
     # description: Kältemittel Heisgastemperatur
     scale: 0.1
     # type: R
     # unit: °C
-  - pub_topic:  waermepumpe/LUEFTER_DREHZAHL
+  - pub_topic: waermepumpe/luefter_drehzahl
     address: 711
     # description: WQP_Luft WP_Lüfter Drehzahl/Bei Sole/Wasser die Versorgung der Quellenpumpe (100%=An)
     # type: R
     # unit: '%'
-  - pub_topic:  waermepumpe/STROMVERSORGUNG_WAERMEERZEUGERPUMPE_PROZENT
+  - pub_topic: waermepumpe/stromversorgung_waermeerzeugerpumpe_prozent
     address: 712
     # description: Stromversorgung Wärmeerzeugerpumpe (100%=An)
     # type: R
     # unit: '%'
-  - pub_topic:  waermepumpe/tandem_wp/STATUS_VERDICHTER_STUFE1
+  - pub_topic: waermepumpe/tandem_wp/status_verdichter_stufe1
     address: 713
     # description: Bei Tandem WP_Status der Verdichter Stufe 1
     # type: R
     # unit: null
-  - pub_topic:  waermepumpe/tandem_wp/STATUS_VERDICHTER_STUFE2
+  - pub_topic: waermepumpe/tandem_wp/status_verdichter_stufe2
     address: 714
     # description: Bei Tandem WP_Status der Verdichter Stufe 2
     # type: R
     # unit: null
-  - pub_topic:  waermepumpe/sicherheitskette/HOCHDRUCK
+  - pub_topic: waermepumpe/sicherheitskette/hochdruck
     address: 715
     # description: Sicherheitskette Hochdruck
     # type: R
     # unit: null
-  - pub_topic:  waermepumpe/sicherheitskette/NIEDERDRUCK
+  - pub_topic: waermepumpe/sicherheitskette/niederdruck
     address: 716
     # description: Sicherheitskette Niederdruck
     # type: R
     # unit: null
-  - pub_topic:  waermepumpe/sicherheitskette/QUELLEN_FEHLER
+  - pub_topic: waermepumpe/sicherheitskette/quellen_fehler
     address: 717
     # description: Sicherheitskette Quellenfehler
     # type: R
     # unit: null
-  - pub_topic:  waermepumpe/sicherheitskette/VERDICHTER_MOTORSCHUTZ
+  - pub_topic: waermepumpe/sicherheitskette/verdichter_motorschutz
     address: 718
     # description: Sicherheitskette Verdichter Motorschutz
     # type: R
     # unit: null
-  - pub_topic:  waermepumpe/betriebsstunden/VERDICHTER1
+  - pub_topic: waermepumpe/betriebsstunden/verdichter1
     address: 719
     # description: Betriebsstunden Verdichter 1
     # type: R
     # unit: null
-  - pub_topic:  waermepumpe/betriebsstunden/VERDICHTER 2
+  - pub_topic: waermepumpe/betriebsstunden/verdichter 2
     address: 720
     # description: Betriebsstunden Verdichter 2
     # type: R
     # unit: null
+
+
+
+  - pub_topic: photovoltaik/einschaltschwelle_kw
+    address: 1000
+    scale: 10
+    # description: Einschaltschwelle in 0,00 KW
+    set_topic: photovoltaik/einschaltschwelle_kw/set
+
+  - pub_topic: photovoltaik/ausschaltschwelle_kw
+    address: 1001
+    scale: 10
+    # description: Ausschaltschwelle in 0,00 KW
+    set_topic: photovoltaik/ausschaltschwelle_kw/set
+
+  - pub_topic: photovoltaik/aktivierungsintervall
+    address: 1002
+    scale: 10
+    # description: Aktivierungsintervall (Wartezeit bis Start WP)
+    set_topic: photovoltaik/aktivierungsintervall/set
+
+  - pub_topic: photovoltaik/aktivierungsstrategie
+    address: 1003
+    scale: 10
+    # description: Aktivierungsstrategie ?=Min. Leistung / ?= Priotät
+    set_topic: photovoltaik/aktivierungsstrategie/set
+
+  - pub_topic: photovoltaik/überschuss_nutzung_aktiv
+    address: 1004
+    # description: Überschuss Nutzung Aktiv
+    set_topic: photovoltaik/überschuss_nutzung_aktiv/set
+
+  - pub_topic: photovoltaik/energie_pro_impuls_kwh
+    address: 1005
+    scale: 10
+    # description: Energie pro Impuls in kwh
+    set_topic: photovoltaik/energie_pro_impuls_kwh/set
+
+  - pub_topic: photovoltaik/impulswertigkeit_i_kwh
+    address: 1006
+    scale: 10
+    # description: Impulswertigkeit in I/kwh
+    set_topic: photovoltaik/impulswertigkeit_i_kwh/set
+
+  - pub_topic: photovoltaik/filterzeit_elektrische_leistung
+    address: 1007
+    scale: 10
+    # description: Filterzeit der eingelesenen Elektrischen Leistung
+    set_topic: photovoltaik/filterzeit_elektrische_leistung/set
+
+  - pub_topic: photovoltaik/aktuell_eingelesene_leistung
+    address: 1008
+    scale: 10
+    # description: Aktuell eingelesene Elektrische Leistung
+    set_topic: photovoltaik/aktuell_eingelesene_leistung/set
+
+  - pub_topic: photovoltaik/elektrische_leistung_erste_verdichter_stufe_kw
+    address: 1009
+    scale: 10
+    # description: Elektische Leistung der ersten Verdichter Stufe in 1,00 KW
+    set_topic: photovoltaik/elektrische_leistung_erste_verdichter_stufe_kw/set
+
+  - pub_topic: photovoltaik/elektrische_leistung_zweite_verdichter_stufe_kw
+    address: 1010
+    scale: 10
+    # description: Elektische Leistung der zweiten Verdichter Stufe in 1,00 KW
+    set_topic: photovoltaik/elektrische_leistung_zweite_verdichter_stufe_kw/set
+
+  - pub_topic: photovoltaik/status
+    address: 1011
+    scale: 10
+    value_map:
+      Gesperrt: 1
+      Normalbetrieb: 2
+      Vorzugsbetrieb: 3
+      Abnahmezwang: 4
+
+  - pub_topic: photovoltaik/status_value
+    address: 1011
+    scale: 10   
+    # description: 1=Gesperrt/2=Normalbetrieb/3=Vorzugsbetrieb/4=Abnahmezwang
+
+  - pub_topic: photovoltaik/istwert_smart_grid_eingang_1
+    address: 1012
+    # description: Istwert Smart Grid Eingang 1
+
+  - pub_topic: photovoltaik/istwert_smart_grid_eingang_2
+    address: 1013
+    # description: Istwert Smart Grid Eingang 2
