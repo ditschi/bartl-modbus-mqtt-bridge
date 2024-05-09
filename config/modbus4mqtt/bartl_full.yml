@@ -1,3 +1,6 @@
+# This file contains all registers found with values while scanning all registers. 
+# According to the technican the unkmown values are mainly internal states
+
 ip: 192.168.1.211
 port: 502
 update_rate: 5
