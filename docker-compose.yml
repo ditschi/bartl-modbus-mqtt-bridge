@@ -9,17 +9,37 @@ services:
       --username "$MQTT_SERVER_USER"
       --password "$MQTT_SERVER_PASSWORD"
       --config /modbus4mqtt/config.yml
-      --mqtt_topic_prefix bartl_wp
+      --mqtt_topic_prefix "$MODBUS4MQTT_TOPIC_PREFIX"
     restart: unless-stopped
     volumes:
-      - ./config/modbus4mqtt/Bartl-WP.yml:/modbus4mqtt/config.yml
+      - $MODBUS4MQTT_CONFIG:/modbus4mqtt/config.yml
+    env_file:
+      - .env
+
+  ha-discovery:
+    build:
+      context: .
+      dockerfile: Dockerfile.discovery
+    container_name: ha-discovery-bartlwp
+    restart: "no" # Run once at startup
+    environment:
+      - CONFIG_FILE=/modbus4mqtt/config.yml
+      - MQTT_PREFIX=$MODBUS4MQTT_TOPIC_PREFIX
+      - DISCOVERY_PREFIX=${DISCOVERY_PREFIX:-homeassistant}
+      - OUTPUT_FILE=/tmp/ha_discovery.json
+    volumes:
+      - $MODBUS4MQTT_CONFIG:/modbus4mqtt/config.yml
+    env_file:
+      - .env
+    depends_on:
+      - modbus4mqtt
 
   telegraf:
     image: telegraf
     hostname: telegraf-mqtt-bartlwp
     container_name: telegraf-mqtt-bartlwp
     volumes:
-       # Mount for telegraf configuration
+      # Mount for telegraf configuration
       - ./config/telegraf/:/etc/telegraf/
       # Mount for Docker API access
       - /var/run/docker.sock:/var/run/docker.sock
@@ -27,4 +47,4 @@ services:
       - .env
     depends_on:
       - modbus4mqtt
-
+    restart: unless-stopped
